@@ -11,8 +11,6 @@
 	/* always put a background color simlar to the image color */
     background: #9480e4 url("images/intro-bg.png");
     background-repeat: no-repeat;
-    /* background-position-x: right;
-    background-position-y: center; */
     background-position: right;
     background-size: cover;
 }

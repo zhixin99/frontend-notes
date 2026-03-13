@@ -32,7 +32,7 @@ Representational State Transfer
     * Server: Send JSON data to client.
 * If we are not adhering to the REST
     * Client: Navigate to a website in a browser.
-    * Server: `Build HTML page with data` and send them back. It's server side rendering. 
+    * Server: `Build HTML page with data` and send them back. It's **server side rendering.** 
     
 2. Statelessness: It forgets the interaction after the response is sent.
 

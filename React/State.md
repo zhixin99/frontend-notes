@@ -3,9 +3,6 @@
 - The UI should be a function of state. React’s approach is not "Manually manipulate the DOM and change things directly." Instead, it is
 "Update the state, and let React automatically rerender the UI based on that state."
 ```jsx
-// state = false → render Login
-// state = true → render Dashboard
-// so the UI is decided by state 
 const [isLoggedIn, setIsLoggedIn] = useState(false)
 
 return (
@@ -18,44 +15,6 @@ return (
 - When the value of `state` changes and the setter function is called, React will re-render the component which contains the states. 
 * Simply modifying the state value directly will not trigger the re-render, and we should `never change a state without a setter function`!
 
-## Example of state
-- In this example, when the state `myFavoriteThings` updates, the page will be rerendered.
-```jsx
-// App.jsx
-import React from "react"
-import ThingList from "./ThingList"
-
-export default function App() {
-    const allFavoriteThings = ["💦🌹", "😺", "💡🫖", "🔥🧤", "🟤🎁"]
-
-    const [myFavoriteThings, setMyFavoriteThings] = React.useState([])
-    
-    // key helps React identify which items in an array have changed, been added, or removed, so it can update the DOM efficiently.
-    // key can't be passed to the child component
-    const thingsElements = myFavoriteThings.map(thing => 
-        <thingList 
-            key={thing}
-            thing={thing}
-        />
-    )
-    
-    return (
-        <main>
-            <section>
-                {thingsElements}
-            </section>
-        </main>
-    )
-}
-```
-```jsx
-// thingList.jsx
-export default function ThingList(props) {
-    return (
-        <p>{props.thing}</p>
-    )
-}
-```
 
 ## Import 
 There are 2 ways to import useState: 
@@ -180,7 +139,6 @@ import React from "react"
 export default function App() {
     const [count, setCount] = React.useState(0)
 
-
     function add() {
         // setCount(count + 1)
         setCount(prevCount=> prevCount + 1)
@@ -202,6 +160,20 @@ export default function App() {
         </main>
     )
 }
+```
+## State only take the initial value
+When a component re-renders, the state line runs again; However, React only uses the `initial value` the first time the component renders as the state value. 
+* In this example, the function generateAllNewDice `will run` every time that the component rerenders
+* However, dices will `not be changed` by the new function result in the rerenders. 
+```jsx
+const [dices, setDices] = useState(generateAllNewDice())
+```
+* We don't want the function to run so many times.
+* In this case, we are passing a `function` to useState, not the `result of the function`.
+* On the first render: React sees that the initial state is a function -> React calls that function once -> The returned value becomes the initial state
+* On later re-renders: React already has the state stored. So it does NOT call the initializer function again. It simply returns the stored state.
+```jsx
+const [dices, setDices] = useState(() => generateAllNewDice())
 ```
 
 ## Array state

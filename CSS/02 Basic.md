@@ -44,25 +44,21 @@ section{
 ## Elements display
 ### Block element
 `<div>`,`<p>`,`<h1>` are all block element.  
-They stack on top of each other.  
-Set height and margin top and bottom. ✅
+* They stack on top of each other.  
+* Set height and margin top and bottom. ✅
 
 ### Inline elements
 `<a>`, `<span>`, `<img>` are inline elements.  
-They sit side by side.  
-They are given white space at the bottom to make sure the elements are not overalapped.   
-Can't set height and margin top and bottom. ❌  
+* They sit side by side.  
+* They are given white space at the bottom to make sure the elements are not overalapped.   
+* Can't set height and margin top and bottom. ❌  
 
 ### Inline-block elements
-`<button>`, `<input>` are inline elements.  
-Sit side by side.  
-Set height and margin top and bottom. ✅
+`<button>`, `<input>` are inline-clock elements.  
+* Sit side by side.  
+* Set height and margin top and bottom. ✅
 ```css
-a{
-    padding: 10px 19px;
-    border-radius: 4px;
-    background-color: #fff200;
-    text-decoration: none;
+a {
 	/* save the issue of overlapping buttons */
     display: inline-block;
 	margin-top: 20px;

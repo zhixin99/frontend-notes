@@ -77,6 +77,10 @@ setTimeout(
 setInterval(getCurrentTime(), 1000)
 ```
 
+## clearInterval()
+The clearInterval() method of the Window interface **cancels** a timed, repeating action which was previously established by a call to setInterval().
+
+
 ## children property
 * element.children returns a live HTMLCollection （`array`）which contains all of the child elements of the element upon which it was called.
 * If the element has no element children, then children is an empty list with a length of 0.

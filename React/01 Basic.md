@@ -1,5 +1,26 @@
 # Basic
+JSX = JavaScript XML
 
+React invented it as a syntax that lets you write UI structure (HTML-like) inside JavaScript.  
+
+In a React component file, there are two different zones:
+
+* Normal JavaScript zone
+```jsx
+const [dices, setDics] = React.useState(generateAllNewDice())
+```
+* JSX zone: It's anywhere you write HTML-like syntax.
+```jsx
+<Die value={dice}/>
+```
+
+## HTML
+```html
+	<body>
+		<div id="root"></div>
+		<script type="module" src="/src/index.jsx"></script>
+  	</body>
+```
 ## The process of parsing JSX
 1. We write JSX syntax.
 ```jsx
@@ -67,100 +88,6 @@ console.log(React)
 import banana from "react" 
 ```
 
-## return HTML
-* Alway put the parent opening tag on the same line as the `return` 
-```jsx
-// ❌
-return 
-    <main>
-    </main>
-
-// ✅
-return <main>
-        </main>
-```
-* Or we can wrap up the HTML into a parenthesis
-```jsx
-return (
-    <main>
-    </main>
-)
-```
-
-## Fragment
-The Fragment will not be showned up in the root div. So it is sibling elements directly under the div section
-```jsx
-import { Fragment } from "react"
-
-root.render {
-    <Fragment>
-        <header></header>
-        <main></main>
-    </Fragment>
-}
-```
-We can also just skip the Fragment and use <> instead
-```jsx
-root.render {
-    <>
-        <header></header>
-        <main></main>
-    </>
-}
-```
-
-### ClassName
-Because React is turning React element into dom, and in vannila javascript we use `xx.ClassName.add()`, in JSX we should also use `className` instead of class
-```jsx
-function Header() {
-    return (
-         <ul className="nav-list">
-    )
-
-}
-```
-- `className=` is an attribute, not a JavaScript expression.
-- Curly braces {} in JSX are only for JavaScript expressions (like variables, logic, or calculations).  
-- Never put it in the {} like `{props.on ? className="on" : className=""}`
-```jsx
-export default function Pad(props) {
-    console.log(props.on)
-    
-    return (
-        <button 
-            style={{backgroundColor: props.color}}
-            className={props.on ? "on" : ""}
-        ></button>
-    )
-}
-```
-
-## Styles
-`camelCase` all the css attributes. 
-```jsx
-import React from "react"
-import padsData from "./pads"
-
-export default function App({ darkMode }) {
-    const [pads, setPads] = React.useState(padsData)
-
-    const styles = {
-        backgroundColor: darkMode ? "#222222" : "#cccccc"
-    }
-
-    const buttonElements = pads.map(pad => (
-        <button style={styles} key={pad.id}></button>
-    ))
-
-    return (
-        <main>
-            <div className="pad-container">
-                {buttonElements}
-            </div>
-        </main>
-    )
-}
-```
 
 
 

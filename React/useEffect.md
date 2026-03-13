@@ -1,5 +1,3 @@
-
-
 ## Side effect
 * In React, a side effect is anything a component does that goes beyond returning UI from props and state.
 * Example: local storage, API, websockets, DOM manipulation
@@ -10,7 +8,7 @@
     * It may trigger state updates and re-renders.
 * That's why we should put the `side effect` in the `useEffect`
 
-# useEffect
+## useEffect
 * useEffect is a React Hook that lets you synchronize a component with an `external` system.
 * useEffect let other codes run first
 ```jsx
@@ -29,11 +27,6 @@ useEffect() has 2 parameters:
 * **optional dependencies array**: it gives us a chance to `stop the function` from running on every single render. It will always be an array of values that React is going to watch between one render and the next.
 If any of the values in this array `change` between those two renders, then react will know that it should `run the function again.`
     * if we leave it as an empty array, it means that the `effect function` will only run the first time the `component` mounts to the page
-
-When does React run your useEffect function?
-- As soon as the component renders for the first time
-- On every re-render of the component (assuming no dependencies array)
-- Will NOT run the effect when the values of the dependencies in the array stay the same between renders
 
 ## cleanup function
 * we can `return` a cleanup function in the useEffect first parameter(the callback function)
@@ -60,4 +53,15 @@ export default function WindowTracker() {
     <h1>Window width: {windowWidth}</h1>
     )
 }
+```
+
+## timer
+```jsx
+const [time, setTime] = React.useState(0)
+useEffect(() => {
+    setInterval(() => {
+        setTime(prev => prev + 1)
+    }, 1000)
+}, [])
+
 ```

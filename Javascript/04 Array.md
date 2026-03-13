@@ -98,6 +98,13 @@ console.log(adults)
 >>> [23, 56, 47, 70, 19, 23, 18]
 ```
 
+## .every() 
+```js
+const numbers = [1, 3, 5, 7, 9];
+numbers.every((num) => num % 2 !== 0);
+// => true
+```
+
 ## .push() & .unshift()  - Add element and return the length
 The .push() method adds one or more elements to the `end` of an array and returns the new `length` of the array.
 ```js
@@ -161,12 +168,12 @@ console.log(guestsArr.join(' '))
 ```js
 function getLabelsHtml(text, sender, ...staffObjs) {
     return staffObjs.map(staffObj => 
-`<div class="label-card">
-    <p>Dear ${staffObj.name}</p>
-    <p>${text}</p>
-    <p>Best wishes,</p>
-    <p>${sender}</p>
-</div>`
+        `<div class="label-card">
+            <p>Dear ${staffObj.name}</p>
+            <p>${text}</p>
+            <p>Best wishes,</p>
+            <p>${sender}</p>
+        </div>`
     ).join('')
 }
 
@@ -433,12 +440,6 @@ Correct way: Using spread operator
 
 
 
-### .every() 
-```js
-const numbers = [1, 3, 5, 7, 9];
-numbers.every((num) => num % 2 !== 0);
-// => true
-```
 
 ## .some()
 returns true if some of the element meet the requirement

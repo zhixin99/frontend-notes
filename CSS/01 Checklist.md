@@ -16,10 +16,26 @@ It also happens if we set with percentage, like 100%. The div will stretch out o
 ```
 Once we add the box-sizing, the height and weight is set for the `whole div`, not the inside content!
 
-## form doesn't inherit the font family
+## Inheritance
 ```css
 input, button {
     font-family: inherit;
+}
+```
+
+## sr-only
+only for screen readers and we don't want them render on the page
+```css
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 ```
 

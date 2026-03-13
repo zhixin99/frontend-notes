@@ -86,7 +86,7 @@ header {
         "nav nav main main main main main main main aside aside aside"
         "nav nav main main main main main main main aside aside aside"
         "nav nav main main main main main main main aside aside aside"
-        /* white space any length of . as long as there's no space between them  */
+        /* white space: any length of . as long as there's no space between them  */
         ".... .... foot foot foot foot foot foot foot foot foot foot";
 }
 
@@ -117,17 +117,43 @@ footer {
 }
 ```
 
+#### grid-area
+```css
+.dice {
+	display: grid; 
+	grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+    place-items: center;
+}
+
+.pos-1 {
+    /* row, column */
+	grid-area: 1 / 1
+}
+
+.pos-2 {
+	grid-area: 1 / 2
+}
+
+...
+
+.pos-8 {
+    grid-area: 3 / 2
+}
+
+.pos-9 {
+    grid-area: 3 / 3
+}
+```
+![alt text](../Images/dice-with-pip.png)
 
 ## grid-auto-flow: dense & auto-fit
 grid-auto-flow: dense - Pack the grid items as dense as possible.  
-
-auto-fit: automatically generates as many columns as possible.
 
 ```css
 .grid-container {
     display: grid;
     grid-gap: .5em;
-                                            /* the image will always fuid when needed, as we scale up the screen */
+    /* auto-fit: the image will always fuid when needed, and automatically generates as many columns as possible. */
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 
     /* grid-auto-row: specify a given value to all the implicitely generated row tracks.   */

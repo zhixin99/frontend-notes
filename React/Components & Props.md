@@ -4,7 +4,6 @@ React components are meant to be `pure functions`.
 * Rendering and re-rendering a component will never have any kind of side effect on an outside system
 
 # Props
-Use {} when we want to get into a javasript expression  
 We can pass neccessary props to the component when creating a new instance of the component
 ```jsx 
 // Contact.jsx
@@ -16,7 +15,6 @@ export default function Contact(props) {
         </article>
     )
 }
-
 ```
 ```jsx 
 // App.jsx
@@ -26,7 +24,6 @@ export default function App(props) {
         <main>
             <Contact name="Jean" location="Singapore"/>
             <Contact name="David" location="Netherlands"/>
-            <Contact name="John" location="China"/>
         </main>
     )
 }
@@ -41,24 +38,53 @@ createRoot(document.getElementById("root")).render(<App />)
 // It will log out objects with all the keys and values that we passed in when calling the component
 >>> {name: "Jean", location="Singapore"}
 >>> {name: "David", location="Netherlands"}
->>> {name: "John", location="China"}
 ```
 
-React can't render an regular object, but it can render an `array` of jsx element.
+## key
+* key helps React identify which items in an array have changed, been added, or removed, so it can update the DOM efficiently.
+* key can't be passed to the child component
+* When we `map over` an array and create an `array of jsx element`, React needs the key that is dedicated to jsx element, so it can keep track of items every time something got rerendered.
 ```jsx
+// Dice.jsx
+export default function Dice(props) {
+    return (
+        <button>props.value</button>
+    )
+}
+```
+```jsx
+// App.jsx
 export default function App() {
-    const ninjaTurtles = [
-        <h2>Donatello</h2>, 
-        <h2>Michaelangelo</h2>,
-        <h2>Rafael</h2>,
-        <h2>Leonardo</h2>
-    ]
+    const array = [1, 2, 3]
+    // Here, we create an array of jsx elements, and it need key
+    const diceEl = array.map(number => <Dice 
+        value={number}
+        key={number} 
+    />)
     return (
         <main>
-            {ninjaTurtles}
+            diceEl
         </main>
     )
 }
+```
+### nanoid
+A third party package that give us the id automatically
+```jsx
+import { nanoid } from "nanoid"
+
+const [dice, setDice] = useState(generateAllNewDice())
+
+function generateAllNewDice() {
+    return new Array(10)
+        .fill(0)
+        .map(() => ({
+            value: Math.ceil(Math.random() * 6), 
+            isHeld: false,
+            id: nanoid()
+        }))
+}
+
 ```
 
 ## Destructure props
@@ -175,6 +201,37 @@ export default function App() {
                 {entryElements}
             </main>
         </>
+    )
+}
+```
+
+## children property
+In React, whenever you put something inside a component's tags (like your links, paragraphs, or skills div), React passes those elements to the component via a special prop called **children**.
+```jsx
+export default function ContentSection({sectionHeader, children}) {
+    return (
+        <div className="project-details-section">
+            <h3 className="project-details__content-title">{sectionHeader}</h3>
+            {children}
+        </div>
+    )
+}
+```
+```jsx
+import ContentSection from "./ContentSection"
+
+export default function ProjectContent() {
+    // all the codes between <ContentSection> and </ContentSection> are passed to the ContentSection as the children property
+    return (
+        <section className="project-details">              
+            <ContentSection
+                sectionHeader="See Live"
+            >
+                <a href="#" className="btn" target="_blank">
+                    Live Link
+                </a>
+            </ContentSection>
+        </section>
     )
 }
 ```

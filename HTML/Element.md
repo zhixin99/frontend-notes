@@ -5,7 +5,7 @@
 | --------------- | ------------------------------------------------------------- | ---------------- | 
 | `<p>`           | Paragraph of text.                                            |
 | `<div>`         | Division or container for grouping elements (block-level).    |
-| `<a>`           | Hyperlink (anchor).                                           | href target
+| `<a>`           | Hyperlink (anchor).                                           | href <br> target="_blank"
 
 ## Headings
 - Only use one `h1` per page. No more, no less.  

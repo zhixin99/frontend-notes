@@ -26,8 +26,18 @@ input:focus, input:hover{
     /* add the new border */
     border: 1px solid red;
 }
-
 ```
+### Uncover the image when hovering
+```css
+.img {
+    background-image: url("...old.png")
+}
+
+.img:hover {
+    background-image: url("...new.png")
+}
+```
+![alt text](../Images/hover.png)
 
 # Pseudo Element
 ## marker
