@@ -33,7 +33,7 @@ obj.greeting;
 // => hello world
 ```
 
-Bracket notation also works with variables, but dot notation doens't 
+Bracket notation also works with variables, but dot notation doesn't. 
 ```js
 const key = 'greeting';
 obj[key];
