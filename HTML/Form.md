@@ -95,27 +95,37 @@ If there's no label, we should give it an aria-label
 <fieldset>
     <legend>Dietary restrictions:</legend>
     <label>
-    <input type="checkbox" name="dietaryRestrictions" value="kosher" />
-    Kosher
+        <input type="checkbox" name="dietaryRestrictions" value="kosher" />
+        Kosher
     </label>
+
     <label>
-    <input type="checkbox" name="dietaryRestrictions" value="part-time" />
-    Vegan
-    </label>
-    <label>
-    <input type="checkbox" name="dietaryRestrictions" defaultChecked="true" value="full-time" />
-    Gluten-free
+        <input type="checkbox" name="dietaryRestrictions" defaultChecked="true" value="full-time" id="checkbox-gluten"/>
+        Gluten-free
     </label>
 </fieldset>
 
 ```
-We can check if the checkbox is checked
+Eventlistener is `change`
 ```js
-const acceptTerms = document.getElementById('accept-terms')
 
-continueBtn.addEventListener('click', function(){
+checkboxGluten.addEventListener('change', function(){
     if (acceptTerms.checked){...}
 })
+```
+### toggle switch
+```html
+<!-- Rectangular switch -->
+<label class="switch">
+  <input type="checkbox">
+  <span class="slider"></span>
+</label>
+
+<!-- Rounded switch -->
+<label class="switch">
+  <input type="checkbox">
+  <span class="slider round"></span>
+</label>
 ```
 
 ## Radio buttons
@@ -214,6 +224,28 @@ const chatInput = document.getElementById('chat-input')
 
 talkBtn.addEventListener('click', function(){
     console.log(chatInput.value)
+})
+
+```
+
+## Slider
+```html
+<div>
+  <input type="range" id="volume" name="volume" min="0" max="11" />
+  <label for="volume">Volume</label>
+</div>
+```
+```css
+/* change the slider thumb */
+.password-length {
+    accent-color: #8B5CF6;
+    cursor: pointer;
+    vertical-align: middle;
+}
+```
+```js
+range.addEventListener("input", function(){
+    lengthValue.textContent = range.value
 })
 
 ```

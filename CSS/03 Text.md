@@ -17,6 +17,11 @@ a {
 }
 ```
 
+## italic
+```css
+font-style: italic;
+```
+
 ## font-size
 ### the rem unit - root em
 We use `rem` for font-size to avoid the `compounding issue`.
