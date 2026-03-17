@@ -1,5 +1,10 @@
 # Basics
 
+## rgba
+RGBA stands for Red, Green, Blue, and Alpha
+* The red, green, and blue values range from 0 to 255 (or 0–100%)
+* Alpha ranges from 0 (fully transparent) to 1 (fully opaque)
+
 ## Organisation with comment
 ```css
 body{
@@ -64,10 +69,11 @@ a {
 	margin-top: 20px;
 } 
 ```
-
+<img src="../Images/anchor-button.png" width="300">
 
 ## Order
 For the same level selecor, the down one override the top one. 
+
 ### Specificity
 Different seletors have different points: 
 - element: 1 point
@@ -77,6 +83,18 @@ Different seletors have different points:
 Many developer don't use id for css.
 - Use element selector for general rules
 - Use class selector for specificity
+
+### !important
+Use `!important` to override all the styles, but `don't use it` if neccessary!
+```css
+.container .title, .container .sub-title {
+    color: purple;
+}
+
+.sub-title {
+    color: darkgreen !important; 
+}
+```
 
 ## Compound selector
 Use compound selector for more specificity, but `try not to use it too much`.  
@@ -131,46 +149,16 @@ div {
     overflow-y: visible;   /* ❌ */
 }
 ```
-
-## Float property
-```css
-img {
-    height: 100px;
-    border-radius: 10px;
-    padding: 0;
-    margin: 5px 10px 5px 0;
-    /* img with text around it */
-    float: right; 
-}
-```
-```css
-Remove any float
-.para-1 {
-    /* nothing will float to the right side of the element */
-    clear: right;
-
-    clear: both;
-}
-```
-Contain the flow in the parent elements
-```css
-.para-3 {
-    border: 1px solid;
-    padding: 10px;
-    /* ensure all the floated element is contained inside of parent element */
-    display: flow-root;
-}
-```
-
-## !important
-Use `!important` to override all the styles, but `no use it` if neccessary!
+<img src="../Images/overflow.png" width="200">
 
 ## Hide the element
+* The element still takes the space. It will not cause the layout shift. 
 ```css
 .container {
     visibility: hidden;
 }
 ```
+* It will not take up any space on the page. 
 ```css
 .container {
     display: none; 

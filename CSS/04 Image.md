@@ -15,6 +15,18 @@
     background-size: cover;
 }
 ```
+<img src="../Images/blend.png" width="400">
+
+### background-blend-mode
+```css
+.about-section {
+    background-image: url(images/clouds.jpg);
+    background-color: rgba(255, 255, 255, 0.5);
+    background-blend-mode: lighten;
+    background-size: cover;
+}
+```
+
 
 ## Resize the image: object-fit
 1. We can set the container and set it the correct width and height we want
@@ -62,3 +74,31 @@ make the `container div and everything inside` treated as an image.
 }
 ```
 
+## Float property
+```css
+img {
+    height: 100px;
+    border-radius: 10px;
+    padding: 0;
+    margin: 5px 10px 5px 0;
+    /* img with text around it */
+    float: right; 
+}
+```
+<img src="../Images/float.png" width="200">
+
+```css
+Remove any float
+.para-1 {
+    /* nothing will float to the right side of the element */
+    clear: right;
+    clear: both;
+}
+```
+Stretch the container to include the float inside. 
+```css
+.para-3 {
+    display: flow-root;
+}
+```
+<img src="../Images/parent-float.png" width="300">

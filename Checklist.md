@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 ```
+<img src="../Images/viewport.png" width="400"> 
 
 ## box-sizing
 When we add the padding or margin to the element, it makes the whole element bigger.
@@ -65,3 +66,9 @@ body {
 ```css
 text-shadow: 0px 0px 20px #aaaaaa;
 ```
+
+## Accessibility
+* Color contrast => 4.5: 1
+* Pair the color with shape
+* Alt text for img
+* aria: aria-live, aria-press, aria-checked, aria-label
