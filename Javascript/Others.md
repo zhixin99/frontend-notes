@@ -1,17 +1,23 @@
 ## Local storage
-Persist the data cross page refresh. You can only store  `string`!
+
 ```js
-          // store   key     value
+// store   key     value
 localStorage.setItem("name", "Jean");
-                         // get the item
+
+// get the item
 const name = localStorage.getItem("name");
 console.log(name)
 >>> name
 
-        // clear the storage
+// clear the storage
 localStorage.clear()
 console.log(name)
 >>> null
+```
+We can only store  `string` as the value
+```js
+myLeads = ["11","aa","bb"]
+localStorage.setItem("myLeads", JSON.stringify("myLeads"))
 ```
 
 

@@ -61,6 +61,16 @@ If there's no label, we should give it an aria-label
     <button type="submit">submit</button>
 </form>
 ```
+### Add event listener for form submission
+* Use `form` as the element, not the submit button
+* Event name is "submit"
+```js
+const form = document.getElementById("form")
+
+form.addEventListener("submit", function(){
+    ...
+})
+```
 
 ## Reset button 
 ```html
@@ -79,6 +89,8 @@ If there's no label, we should give it an aria-label
     </button>
 </form>
 ```
+
+
 
 ## Checkbox
 ```html
@@ -100,7 +112,7 @@ If there's no label, we should give it an aria-label
     </label>
 
     <label>
-        <input type="checkbox" name="dietaryRestrictions" defaultChecked="true" value="full-time" id="checkbox-gluten"/>
+        <input type="checkbox" name="dietaryRestrictions" checked value="full-time" id="checkbox-gluten"/>
         Gluten-free
     </label>
 </fieldset>

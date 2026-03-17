@@ -1,15 +1,5 @@
 # Form
 
-## Add event listener for form submission
-* Use `form` as the element, not the submit button
-* Event name is "submit"
-```js
-const form = document.getElementById("form")
-
-form.addEventListener("submit", function(){
-    ...
-})
-```
 
 ## e.preventDefault() 
 To prevent getting a query string in the URL and refresh the page. 

@@ -17,6 +17,9 @@ x = Math.round(x);
 console.log(x);
 >>> 4
 
+// Round to 2 decimals
+const price = Math.round(totalPrice * 100) / 100
+
 // down round
 x = Math.floor(x);
 console.log(x);
