@@ -34,6 +34,7 @@ It is always relative to the window and it is always there no matter how you scr
     /* put in the center of the browser window */
     position: fixed;
     /* top: 0; bottom: 0; left: 0; right: 0; */
+    /* It makes the element stretch to all four edges of the viewport, filling the entire screen. */
     insert: 0; 
     margin: auto;
 }

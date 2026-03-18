@@ -71,4 +71,4 @@ text-shadow: 0px 0px 20px #aaaaaa;
 * Color contrast => 4.5: 1
 * Pair the color with shape
 * Alt text for img
-* aria: aria-live, aria-press, aria-checked, aria-label
+* aria: aria-live, aria-press, aria-checked, aria-label(form input)

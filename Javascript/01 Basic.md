@@ -87,12 +87,10 @@ export {
 </body>
 ```
 ```js
-// file: index.js
 import { 
   dinnerPartyGuests as guest, 
   shortSpaceTripsArr as trip
 } from "/data.js"
-console.log(guests)
 ```
 ### export default 
 One file can only have one default export.  

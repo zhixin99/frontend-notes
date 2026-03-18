@@ -2,11 +2,66 @@
 
 `DOM manipulation comes with a cost!`
 
-## Built-in shortcut properties
+## Take control of the HTML element
+
+### 1. Built-in shortcut properties
 ```js
 document.body
 document.head
 document.title
+```
+
+### 2. getElementById()
+```jsx
+document.getElementById
+```
+
+### 3.getElementsByClassName()
+* It grabs all the element with a given class, and returns a array.
+* For each element of the array, we can directly take control of it. 
+```js
+clearBtn.addEventListener('click', function(){
+    const productsArray = document.getElementsByClassName('product')
+    for (let product of productsArray){
+        product.classList.remove('purchased')
+        product.classList.add('on-offer')
+        
+    }
+})
+```
+
+### 4. .querySelector()
+### Psuodo selector
+```js
+submitBtn.addEventListener('click', function(){
+    const checkedRadio = document.querySelector('input[type="radio"]:checked')
+    console.log(checkedRadio.value)
+})
+```
+### Class selector
+```js
+const box = document.querySelector(".box");
+```
+### id selector
+```js
+const header = document.querySelector("#header");
+```
+### Label selector
+```js
+// it will select the first p element
+const firstParagraph = document.querySelector("p");
+```
+
+### 5. event
+* We can also pass in the **e.currentTarget** instead of the form element
+```js
+const loginForm = document.getElementById('login-form')
+
+loginForm.addEventListener('submit', function(e){
+    e.preventDefault()
+
+    const loginFormData = new FormData(e.currentTarget)
+})
 ```
 
 ## Write the HTML text
@@ -61,25 +116,11 @@ boxBtn.addEventListener("click", function() {
 })
 ```
 
-## Function setTimeout - set the delay
-The time is in milliseconds 
+## Image src Property
+Change the image src in javascript
 ```js
-setTimeout(
-    function(){
-        console.log("Hello. world!")
-    }, 
-    3000
-)
+document.getElementById("myImg").src = "hackanm.gif";
 ```
-
-## Function setInterval - run the function every xxx milliseconds
-```js
-setInterval(getCurrentTime(), 1000)
-```
-
-## clearInterval()
-The clearInterval() method of the Window interface **cancels** a timed, repeating action which was previously established by a call to setInterval().
-
 
 ## children property
 * element.children returns a live HTMLCollection （`array`）which contains all of the child elements of the element upon which it was called.
@@ -98,73 +139,32 @@ for (const child of myElement.children) {
 }
 ```
 
-## Image src Property
-Change the image src in javascript
-```js
-document.getElementById("myImg").src = "hackanm.gif";
-```
-
-
-
-## .querySelector()
-### Psuodo selector
-```js
-submitBtn.addEventListener('click', function(){
-    //                          it allows us to select by the psuodo selector
-    const checkedRadio = document.querySelector('input[type="radio"]:checked')
-    console.log(checkedRadio.value)
-})
-```
-### Class selector
-```js
-const box = document.querySelector(".box");
-```
-### id selector
-```js
-const header = document.querySelector("#header");
-```
-### Label selector
-```js
-// it will select the first p element
-const firstParagraph = document.querySelector("p");
-```
-
 ## .parentElement
+* It lets us directly take control of the parent element in js
+* It is super useful for the form, because we only get the **id** of the input, but we can take control of the full **form container**.
 ```js
 const container = document.getElementById('container')
 
-container.innerHTML =   
-    `<div class="product">
-        <h3>A</h3>
-        <button id="A">Buy Now</button>
+container.innerHTML =  `
+    <div>
+        <input type="radio" id="apple" value="apple">
+        <label for="apple">
     </div>
-    <div class="product">
-        <h3>B</h3>
-        <button id="B">Buy Now</button>
+    <div>
+        <input type="radio" id="apple" value="apple">
+        <label for="apple">
     </div>
-    <div class="product">
-        <h3>C</h3>
-        <button id="C">Buy Now</button>
-    </div>`
-                    
+    `            
 container.addEventListener('click', function(e){
-    //                                  it lets us directly take control of the parent element in js
     document.getElementById(e.target.id).parentElement.style.backgroundColor = 'lightblue'
 })
 ```
 
-## .getElementsByClassName()
-```js
-clearBtn.addEventListener('click', function(){
-    // .getElementsByClassName returns a array like object, we can take it as an array for now
-    const productsArray = document.getElementsByClassName('product')
-    for (let product of productsArray){
-        product.classList.remove('purchased')
-        product.classList.add('on-offer')
-        
-    }
-})
-```
+
+
+
+
+
 
 
 ## .disabled
@@ -181,12 +181,6 @@ clearBtn.addEventListener('click', function(){
 ```
 
 ```js
-const decrement = document.getElementById('decrement')
-const increment = document.getElementById('increment')
-const quantityDisplay = document.getElementById('quantity-display')
-
-let quantity = 0
-
 decrement.addEventListener('click', function(){
     quantity--
     if (quantity === 0){
@@ -194,12 +188,4 @@ decrement.addEventListener('click', function(){
     }     
     quantityDisplay.innerText = quantity
 })
-
-increment.addEventListener('click', function(){
-    quantity ++
-    decrement.disabled = false
-    quantityDisplay.innerText = quantity
-})
 ```
-
-## data- attribute
