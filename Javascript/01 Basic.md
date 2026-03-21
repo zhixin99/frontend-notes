@@ -18,6 +18,8 @@ A variable is a container to store data in two steps:
 - Declaration (let, var, const)
 - Assignment (= assignment operator)
 
+Try not to use a global variable.  **Keep variables in local scope as much as possible.**
+
 ### Constant
 const is a variable that can't be reassigned once it has been declared.  
 ``` If possible, use const. If not, use let. ```

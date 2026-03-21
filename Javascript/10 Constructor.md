@@ -1,4 +1,24 @@
 # Constructors
+* It is a machine that stores a template of object and can give you new instance of `object`.
+* It should have `Uppercase first letter`.
+* It is actually a kind of `function`, so we need bracket to invoke it. 
+
+## Build Constructor functions
+* We `uppercase the first letter` of the function name to show it is a constructor
+```js
+function Gamer(name, score){
+    this.name = name
+    this.score = score
+    this.incrementScore = function(){
+    	this.score++
+    }
+}
+
+const dave = new Gamer('Dave', 0)
+dave.incrementScore()
+console.log(dave)
+>>> Gamer {name: 'Dave', score: 1}
+```
 
 ## Error() Constructor
 * This constructor gives us an ability to custom error messages. 
@@ -13,7 +33,8 @@ function checkUsername(userName) {
 }
 
 checkUsername()
->>> Error: No username provided    // This is just a string
+>>> Error: No username provided    
+// This is just a string
 ```
 
 ## throw the error
@@ -27,7 +48,8 @@ function test() {
 test()
 console.log("C") // never run
 
->>> !Error: Oops    // It means the whole codes is breaking down
+// It means the whole codes is breaking down
+>>> !Error: Oops    
 ```
 
 ## try/catch the error
@@ -81,16 +103,16 @@ fetch("/data")
 	})
 ```
 
-## Date() constructor 
-A date object is an `instance` of Date Class.   
-
-No arguments → current day, date and time (in your time zone). It is an `object`.
+## Date() constructor   
+* No arguments → current day, date and time (in your time zone). It is an `object`.
 ```js
 const now = new Date()
 
+// It is an object
 console.log(now)
->>> 2025-12-19T07:22:54.426Z     // This is an object!
+>>> 2025-12-19T07:22:54.426Z 
 
+// Convert it to string
 console.log(now.toString())
 >>> Thu Jul 27 2023 13:54:08 GMT+0100 (British Summer Time)
 ```
@@ -121,7 +143,7 @@ d.toLocaleTimeString();  // -> "7:38:05 AM"
 ```js
 function doDate()
 {
-    var now = new Date()
+    const now = new Date()
     document.getElementById("todaysDate").innerHTML = now;
 }
 
@@ -312,44 +334,7 @@ try {
 }
 ```
 
-# OOP
 
-## Object with methods and this
-``` js
-// If we change the gamer name, we will also need to change the object name in the incrementScore method
-const gamer = {
-    name: 'Dave',
-    score: 0,
-    incrementScore: function(){
-        gamer.score++   
-    }
-}
-
-// to make it eeasier, we can use `this` to represent the whole object
-const gamer = {
-    name: 'Dave',
-    score: 0,
-    incrementScore: function(){
-        this.score++   
-    }
-}
-```
-
-
-## Objects to Constructor functions
-We uppercase the first letter to show it is a constructor
-```js
-function Gamer(name, score){
-	this.name = name
-	this.score = score
-	this.incrementScore = function(){
-		this.score++
-	}
-}
-
-const dave = new Gamer('Dave', 0)
-dave.incrementScore()
-```
 
 
 ## Class syntax

@@ -258,11 +258,11 @@ or we can use querySelector
 document.querySelector('input[name="emotion"]:checked').value
 ```
 
-## Dropdown button
-- Give the select element a `name` and give each option a `value`.  
+## Dropdown button - select element
+- Give the `select` element a `name` and give each `option` a `value`.  
 - `defaultValue` property will show the given value as the default value.  
 - `size` represents how many items shown in the scroll bar without scroll.   
-- We can put a `value of empty string` and put some instruction texts as the 1st option, make it `disabled`, and make the **select** element `required`.
+- We can put a value of empty string and put some instruction texts as the 1st option, make it `disabled`, and make the **select** element `required`.
 - Group options together in the `optgroup` if needed.
 
 ```html
@@ -270,12 +270,15 @@ document.querySelector('input[name="emotion"]:checked').value
     <form>
         <label for="superpowers">Choose Your Superpower:</label>
         <select id="superpowers" size="6" name="superpowers" defaultValue="indigo" required>
+            
             <option value="" disabled>-- Choose a color --</option>
+            
             <optgroup label="physical">
                 <option value="flight">Flight</option>
                 <option value="invisibility">Invisibility</option>
                 <option value="superStrength" selected>Super Strength</option>
             </optgroup>
+
             <optgroup label="psychological">
                 <option value="telepathy">Telepathy</option>
                 <option value="timeTravel">Time Travel</option>
@@ -287,7 +290,9 @@ document.querySelector('input[name="emotion"]:checked').value
     </form>
 </section>
 ```
-We can get the value of the currently selected dropdown option
+<img src="../../Images/dropdown.png" width="400">
+
+* We can get the `value` of the currently selected dropdown option because we only need to grab the select element. This is different from **radio buttons**, because each input element is seperate. 
 ```js
 const superPowers = document.getElementById("superpowers")
 

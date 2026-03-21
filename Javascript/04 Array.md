@@ -105,6 +105,13 @@ numbers.every((num) => num % 2 !== 0);
 // => true
 ```
 
+## .some()
+returns true if some of the element meet the requirement
+```js
+[1, 3, 5].some(n => n % 2 === 0); // false
+[1, 4, 5].some(n => n % 2 === 0); // true
+```
+
 ## .push() & .unshift()  - Add element and return the length
 The .push() method adds one or more elements to the `end` of an array and returns the new `length` of the array.
 ```js
@@ -212,7 +219,8 @@ console.log(email)
 ```
 
 ## .forEach() method
-Use the forEach() method when you don't need to create a new array
+* Use the forEach() method when you don't need to create a new array
+* **Never use return** in forEach
 ```js
 // pass in an anonymous function with a parameter, which will be each individual element in the array
 characters.forEach(function(character){
@@ -229,26 +237,10 @@ characters.forEach(function(character, index){
 >>> 
 0 Ninja
 1 Sorcerer
-2 Ogre
-3 Unicorn
 ```
 ### return undefined error
-It doesn't return a new array! It returns `undefined`! We need to avoid using `return` in the forEach() function. 
-```js
-const playlistHtml = playlistArr.forEach(function(track){
-    return `
-    <section class="card">
-        <div class="card-start">
-            <img src="/images/${track.albumArt}">
-        </div>
-    </section>
-    `
-}).join('')
-
-console.log(playlistHtml)
->>> undefined
-```
-The correct way is to create the array first and push element to the array. 
+* It doesn't return a new array! It returns `undefined`! We need to avoid using `return` in the forEach() function. 
+* The correct way is to create the array first and push element to the array. 
 ```js
 const playlistHtml = []
 
@@ -260,21 +252,23 @@ playlistArr.forEach(function(track){
         </div>
     </section>
     `)
-})   // the join() method can't be chained here, because forEach() method returns undefined. 
-document.getElementById('container').innerHTML = playlistHtml.join('')  // the join() method should be chained here
+})  
+document.getElementById('container').innerHTML = playlistHtml.join('') 
 ```
 
 ## .reduce() method
-Reduces the array into a single value.  
-It takes an accumulator and the current element in the array as parameters. 
+* Reduces the array into a single value.  
+* It takes an `accumulator` and the `current element` in the array as parameters. 
+* By default, **accumulator** will be the `first element` in the array, and **currentValue** will be the `2nd element` from the beginning. 
+* then, the 2nd element is added up to the accumulator, and the 3nd element become the current Value.
 ```js
 let arr = [1, 2, 3, 4]
 
-// By default, accumulator will be the first element in the array, and currentValue will be the 2nd element from the beginning. 
-// then, the 2nd element is added up to the accumulator, and the 3nd element become the current Value.
 arr.reduce((total, currentValue) => total + currentValue)
 ```
-
+* with object, we shouldn't add the object together.
+* We can give the `reduce` funtion `another parameter` 0
+* It means that the first total is 0, and the first currentValue is the first element in the array
 ```js
 const studentsArr = [
     {
@@ -293,7 +287,7 @@ const studentsArr = [
 
 studentsArr.reduce((total, currentValue) => 
   total + currentValue.grade, 0)   
-// 0 is the extra parameter for the reduce method. It means that the first total is 0, and the first curretnValue is the first element in the array
+
 ```
 
 ```js
@@ -313,17 +307,14 @@ arr.reduce(
 // => { even: [2, 4], odd: [1, 3] }
 ```
 
-## Spread operator - expand and join arrays
-It expands an array into `a list of elements`. 
+## Spread operator 
+It expands an array into `a list of elements`. Each of the element is `separate`！！！
 ```js
 const lunchMenu = ['Greek Salad', 'Open Sandwich']
 
 // it returns the individual element inside of the array
 console.log(...lunchMenu)
 >>> "Greek Salad", "Open Sandwich"
-
-console.log(lunchMenu)
->>> ["Greek Salad", "Open Sandwich"]
 ```
 ### Copy of an array
 spread operator is used as a good way to copy an array
@@ -354,6 +345,20 @@ findPriceExtremes([
 ])
 ```
 
+## + symbol
+`+` does NOT merge arrays. What actually happens:
+- Each array is converted to a string
+- Then the strings are concatenated
+```js
+const friendsList = ['noodles', 'sauce', 'mozzarella', 'kampot pepper'];
+const myList = ['noodles', 'meat', 'sauce', 'mozzarella'];
+
+const totalList = friendsList + myList
+totalList
+>>> "noodles,meat,sauce,mozzarellanoodles,sauce,mozzarella,kampot pepper" 
+```
+
+
 ## Array destructuring
 It is a concise way to extract values from an array and assign them to distinct `variables`.
 
@@ -382,12 +387,12 @@ export function shiftThreeCardsAround(deck) {
 }
 ```
 
-## Shallow copy objects and arrays
-When creating an const which holds an array of objects, JavaScript creates that array in memory. So the const `holds a reference` to the array in memory.   
+## Shallow copy
+* When we are copying a `single object` from an `array`, if the object changes, the original array will also change. 
+* When creating an const which holds an array of objects, JavaScript creates that array in memory. So the const holds a reference to the array in memory.   
+* When we copy an object from that array, JS will not create the object in the memory. So the object also holds a reference to the original **array in the memory**. 
+<img src="../Images/shallow-copy.png" width="400">
 
-When we copy an object from that array, JS **will not create the object in the memory.** So the object also holds a reference to the original array in the memory. 
-
-When the object changes, the array in the memory changes, so the original const array also changes!
 ```js
 const usersArray = [
     {
@@ -417,36 +422,8 @@ console.log(userObj)
 
 
 
-## Combine arrays
-`+` does NOT merge arrays. What actually happens:
-- Each array is converted to a string
-- Then the strings are concatenated
-```js
-const friendsList = ['noodles', 'sauce', 'mozzarella', 'kampot pepper'];
-const myList = ['noodles', 'meat', 'sauce', 'mozzarella'];
-
-const totalList = friendsList + myList
-totalList
->>> "noodles,meat,sauce,mozzarellanoodles,sauce,mozzarella,kampot pepper" // This is a string, not an array.
-```
-Correct way: Using spread operator
 
 
-
-
-
-
-
-
-
-
-
-## .some()
-returns true if some of the element meet the requirement
-```js
-[1, 3, 5].some(n => n % 2 === 0); // false
-[1, 4, 5].some(n => n % 2 === 0); // true
-```
 
 ## .find()
 It returns the `value` of the first element in the array that passes the predicate test. The method returns undefined when none of the elements in the array pass the predicate test.

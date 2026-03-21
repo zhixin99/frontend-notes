@@ -112,12 +112,18 @@ const multiply = a1 => a1 * 5
 const zero = () => 0
 ```
 
+## Default parameter
+Give the argument = xx to replace the missing parameter.
+```js
+function calculateTotalCost(itemsBoughtArr, discount = 0) {
+
+}
+```
+
 ## ...name - Rest parameters 
-We got a function that takes in parameters but we don't know how many arguments that is going to be passed to it.   
-
-It captures all the arguments which don't explicitly  match an exsiting parameter. 
-
-All the rest arguments will be wrapped in an `array`. 
+* We got a function that takes in parameters but we don't know how many arguments that is going to be passed to it.   
+* It captures all the arguments which don't explicitly match an exsiting parameter. 
+* All the rest arguments will be wrapped in an `array`. 
 
 ```js
 function setPermissionLevel(permissionLevel, ...names) {
@@ -127,22 +133,6 @@ function setPermissionLevel(permissionLevel, ...names) {
 
 setPermissionLevel('admin', 'Dave', 'Sally', 'Mike', 'Clare')
 ```
-
-```js
-function concat(...strings) {
-  return strings.join(' ');
-}
-
-concat('one');
-// => 'one'
-
-concat('one', 'two', 'three');
-// => 'one two three'
-```
-
-
-
-
 
 ## Closures
 ```js

@@ -48,7 +48,6 @@ true == 1      // true
 null == undefined // true 
 ```
 
-
 ## Ternary operator
 This operator is a short form for writing an if/else statement.   
 The syntax is `condition ? consequent-expression : alternative-expression`.   
@@ -71,7 +70,6 @@ const message = exerciseTimeMins < 30 ? 'You need to try harder!'
 const likeIconClass = tweet.isLiked ? 'liked' : ''
 ```
 
-
 ## Logical operators (!, &&, ||) 
 ```js
 // or
@@ -80,7 +78,8 @@ true || false   // true
 // and
 true && false   // false
 ```
-### || - Default Fallback
+### Short-circuiting
+#### ||  Default Fallback
 ```js
 const jobHunter = {
     name: 'Tom Chant',
@@ -89,7 +88,7 @@ const jobHunter = {
 
 console.log(`${jobHunter.name}'s work location is ${jobHunter.jobSearchArea || 'Worldwide'}`)
 ```
-### && - Conditional execution
+#### && - Conditional execution
 It works like an **if** condition: if the left is true, then the right will be executed
 ```js
 const user = {
@@ -98,7 +97,6 @@ const user = {
 }
 user.role === 'admin' && console.log('Dashboard Displayed')
 ```
-
 
 ## switch()
 It examines a value against many case clauses.   

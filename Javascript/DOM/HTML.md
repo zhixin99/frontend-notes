@@ -3,7 +3,6 @@
 `DOM manipulation comes with a cost!`
 
 ## Take control of the HTML element
-
 ### 1. Built-in shortcut properties
 ```js
 document.body
@@ -52,7 +51,68 @@ const header = document.querySelector("#header");
 const firstParagraph = document.querySelector("p");
 ```
 
-### 5. event
+## Know which HTML element is triggered
+### 1. e.target.id
+```js
+document.getElementById("click", (e) => {
+    console.log(e.target.id)
+})
+```
+### 2. e.target.dataset (data attribute)
+```html
+<img src="/images.adb.png" id="img"> 
+
+<!-- data-[the name i give] = [stored value] -->
+<i class="fa-class fa-share" data-share="img"></i>
+```
+
+```js
+document.addEventListener('click', function(e) {
+    // only when you click on the share icon, the e.target.dataset.share will exist
+    if (e.target.dataset.share){
+        console.log(e.target.dataset.share)
+    }
+})
+```
+* JS will flattern out the camelCase in HTML
+* **Best practice: Use `dash` to seperate words in HTML, and use `camelCase` in the Javascript!**
+```html
+<i class="fa-class fa-share" data-share-btn="img"></i>
+```
+
+```js
+document.addEventListener('click', function(e) {
+    //  B here is camel case
+    if (e.target.dataset.shareBtn){
+        console.log(e.target.dataset.shareBtn)
+    }
+})
+```
+`Don't use uppercase` when naming data attributes in HTML
+```html
+<!--  shareBtn is camelCase, which will be flatterned out -->
+<i class="fa-class fa-share" data-shareBtn="img"></i>
+```
+
+```js
+// This will never work
+document.addEventListener('click', function(e) {
+    //                        B here is camelCase
+    if (e.target.dataset.shareBtn){
+        console.log(e.target.dataset.shareBtn)
+    }
+})
+```
+```js
+// This will work
+document.addEventListener('click', function(e) {
+    //                   use b here
+    if (e.target.dataset.sharebtn){
+        console.log(e.target.dataset.sharebtn)
+    }
+})
+```
+### 3. e.currentTarget
 * We can also pass in the **e.currentTarget** instead of the form element
 ```js
 const loginForm = document.getElementById('login-form')
@@ -97,7 +157,9 @@ src = "xxx"
 container.innerHTML = `<img src="${src}">`
 ```
 
+## Input element & avoid innerHTML
 * Without the innerHTML, we will need to use createElement and appendChild to do the same thing
+* It doesn't allow malicious JavaScript to be executed.
 
 ```js
 const h1 = document.createElement("h1")

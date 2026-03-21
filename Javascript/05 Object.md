@@ -40,9 +40,7 @@ obj[key];
 // => hello world
 
 obj.key // ❌ It is same as obj["key"]
-
 ```
-
 
 ## Adding or Changing a Value
 You can add or change a value using the assignment operator =. Again, there are dot and bracket notations available.
@@ -57,6 +55,36 @@ obj['new key 2'] = 'new value 2';
 
 const key = 'new key 3';
 obj[key] = 'new value 3';
+```
+
+## Deleting a pair
+You can delete a key-value pair from an object using the delete keyword.
+```js
+const obj = {
+	key1: 'value1',
+	key2: 'value2',
+};
+
+delete obj.key1;
+delete obj['key2'];
+```
+
+## Spread operator
+It expands an object into a list of elements
+```js
+let address = {
+	postalCode: '11011',
+	city: 'Berlin',
+}
+
+address = { ...address, country: 'Germany' }
+
+console.log(address)
+>>>
+{  postalCode: '11011',
+  city: 'Berlin',
+  country: 'Germany'
+}
 ```
 
 ## Object destructure
@@ -78,36 +106,37 @@ const sun = weather.sun
 const cloud = weather.cloud
 const thunder = weather.cloud_with_lightning
 ```
-
-## Spread operator
-It expands an object into a list of elements
+### Rest operator
+rest operator can be used to collect more than one properties and store them in a single `object`.
 ```js
-let address = {
+const { street, ...address } = {
   postalCode: '11011',
+  street: 'Platz der Republik 1',
   city: 'Berlin',
 };
-address = { ...address, country: 'Germany' };
-=> {
-  postalCode: '11011',
-  city: 'Berlin',
-  country: 'Germany',
+
+console.log(street)
+>>> 'Platz der Republik 1'
+
+console.log(address)
+>>> {postalCode: '11011', city: 'Berlin'}
+```
+
+## Objects with Method and this
+* `this` in an object method represent the `object` itself
+* **Avoid using arrow function** in object method.
+```js
+const gamer = {
+    name: 'Dave',
+    score: 0,
+    incrementScore: function(){
+		// "this" is same as "gamer"
+        this.score++   
+    }
 }
 ```
 
 
-
-
-## Deleting an Entry
-You can delete a key-value pair from an object using the delete keyword.
-```js
-const obj = {
-  key1: 'value1',
-  key2: 'value2',
-};
-
-delete obj.key1;
-delete obj['key2'];
-```
 
 ## .hasOwnProperty() - Checking Whether a Key Exists
 You can check whether a certain key exists in an object with the hasOwnProperty method.
@@ -122,44 +151,28 @@ obj.hasOwnProperty('age');
 ```
 
 ## Looping Through an Object
-Objects are not designed to be ordered collections. To avoid subtle errors, you should always assume the for...in loop visits the keys in an `arbitrary` order. 
-When iterating over a plain object (for example with for...in or Object.keys()), JavaScript follows this order:
-- Integer keys (also called array index–like keys): Iterated in ascending numeric order
+* Objects are `not` designed to be ordered collections. 
+* To avoid subtle errors, you should always assume the for...in loop visits the keys in an `arbitrary` order. 
+* When iterating over a plain object, JavaScript follows this order:
+- Integer keys: Iterated in `ascending` numeric order
 - String keys: Iterated in the order they were inserted
 - Symbol keys: Iterated in insertion order
 
 ```js
 const obj = {
-  b: 1, 
-  1: 'one', 
-  a: 2, 
-  0: 'zero'
+	b: 1, 
+	1: 'one', 
+	a: 2, 
+	0: 'zero'
 };
 
 for (let key in obj) {
-  console.log(key, obj[key]);
+	console.log(key, obj[key]);
 }
 // 0
 // 1
 // b
 // a
-
 ```
 
-
-
-### Rest operator
-rest operator can be used to collect one or more object properties and store them in a single object.
-```js
-const { street, ...address } = {
-  postalCode: '11011',
-  street: 'Platz der Republik 1',
-  city: 'Berlin',
-};
-street;
-// => 'Platz der Republik 1'
-address;
-// => [  postalCode: '11011',
-//       city: 'Berlin']
-```
 
