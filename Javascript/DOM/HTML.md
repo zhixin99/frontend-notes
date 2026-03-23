@@ -53,6 +53,7 @@ const firstParagraph = document.querySelector("p");
 
 ## Know which HTML element is triggered
 ### 1. e.target.id
+* It always returns a `string`, so when we filter, remember to add a `Number()`!
 ```js
 document.getElementById("click", (e) => {
     console.log(e.target.id)

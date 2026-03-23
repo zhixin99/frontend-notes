@@ -95,7 +95,7 @@ When a child element touches its parent, the top and bottom margins will merge w
 ```
 
 ```css
-equals to margin top and margin bottom
+/* equals to margin top and margin bottom */
 .facts-list > li {
     margin-block: 10px;
 }

@@ -5,7 +5,7 @@
 | --------------- | ------------------------------------------------------------- | ---------------- | 
 | `<label>`       | Label for a form element.                                     |
 | `<button>`      | Clickable button.                                             | type
-| `<input>`       | Input field (text box, checkbox, etc.).                       | type name placeholder aria-label value  id accept="image/png, image/jpg"
+| `<input>`       | Input field (text box, checkbox, etc.).                       | type <br> name <br> placeholder <br> aria-label <br> value  <br> id <br> accept="image/png, image/jpg"<br> inputmode="numeric"
 | `<select>` and `<option>` and `<optgroup>`      | Dropdown buttons.                       | value selected size multiple
 | `<textarea>`   | Long inputs.                   | 
 

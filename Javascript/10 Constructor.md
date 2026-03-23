@@ -4,7 +4,8 @@
 * It is actually a kind of `function`, so we need bracket to invoke it. 
 
 ## Build Constructor functions
-* We `uppercase the first letter` of the function name to show it is a constructor
+* We `uppercase the first letter` of the function name to show it is a constructor.
+* Constructor function is a kind of `function declaration`, and function declaration is *hoisted*. 
 ```js
 function Gamer(name, score){
     this.name = name
@@ -18,6 +19,28 @@ const dave = new Gamer('Dave', 0)
 dave.incrementScore()
 console.log(dave)
 >>> Gamer {name: 'Dave', score: 1}
+```
+
+## Class
+* It is a another template to create objects
+* In the `constructor method` (which is a fixed keyword that can't be changed), we will initialize the properties. Anything that we may use in our own method needs to be set up first in the constructor method. Put `parameter` if needed. 
+* For our `own method`, we only need to declare a `function name`, and give it bracket and curly braces. It can also take parameter if needed. 
+* Class is not hoisted. 
+```js
+class Gamer {
+	constructor(name, score) {
+		this.name = name
+		this.score = score
+	}
+
+	incrementScore() {
+		this.score++
+	}
+}
+
+const dave = new Gamer('Dave', 0)
+dave.incrementScore()
+console.log(dave)
 ```
 
 ## Error() Constructor
@@ -334,25 +357,6 @@ try {
 }
 ```
 
-
-
-
-## Class syntax
-It is not hoisted
-```js
-class Gamer {
-	constructor(name, score){
-		this.name = name
-		this.score = score
-	}
-	incrementScore(){
-		this.score++
-	}
-}
-
-const dave = new Gamer('Dave', 0)
-dave.incrementScore()
-```
 
 
 

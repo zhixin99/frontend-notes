@@ -19,17 +19,41 @@ The default layout of grid is just a single column that lay out all the element 
 }
 ```
 
+## grid-template & grid-auto
+`grid-auto-row`: specify a given height to all the implicitely generated row tracks.  
+```css
+.container{
+    display:grid;
+    grid-template-rows:100px;
+    grid-auto-rows:75px;
+}
+
+Row1 → 100px
+Row2 → 75px
+Row3 → 75px
+Row4 → 75px
+```
+
+
+## repeat
+* repeat(how many times, what to repeat) 
+```css
+.container {
+    grid-template-columns: repeat(5, 30px)
+}
+```
+
 ## fr
 ```css
 .container {
     /* we have a total of 5 fractions and the first item takes up 2  */
-    grid-template-columns: 2fr repeat(3, 1fr);  /* repeat(how many times, what to repeat) */
+    grid-template-columns: 2fr repeat(3, 1fr);  
 }
 ```
-
+* Auto: takes up the space it needs based on the text width
+* The rest of the space is divided equally to 3 pieces. 
 ```css
 .container {
-    /* the first item only takes up the space it needs based on the text width  */
     grid-template-columns: auto repeat(3, 1fr);
 }
 ```
@@ -41,56 +65,59 @@ align-items
 align-self
 ```
 
-## Placement
-### grid-row/grid-column, and span
+## grid lines
+```css
+nav {
+    grid-column:  1 / 3;
+    grid-row: 2 / 5;
+}
+```
+<img src="../Images/grid-line.png" width="400">
+
+
+## span
 ```css
 .grid-container {
     display: grid;
-    grid-template: 1fr 3fr 1fr / 1fr 2fr;
+    grid-template: repeat(5, 1fr) / repeat(3, 1fr);
 }
  
 header {
     background-color: palegoldenrod;
-    grid-column: span 2;
+    grid-column: span 3;
 }
 nav {
     background-color: lightcoral;
+    grid-row: span 3; 
 }
 main {
     background-color: lightgreen;
+    grid-row: span 3; 
+    grid-column: span 2;
 }
 footer {
     background-color: gold;
-    grid-column: span 2;
+    grid-column: span 3;
 }
 ```
+<img src="../Images/span.png" width="400">
 
-### grid row/grid column, and line numbers
-```css
-header {
-    background-color: palegoldenrod;
-    /* grid-column-start: 1;
-    grid-column-end: 13; */
-    grid-column: 1 / -1;
-}
-```
-
-
-### grid-template-areas, grid-area
+## grid-template-areas, grid-area
+* give each section a `grid-area` name
+* list the grid-area name in the grid-template-areas
+* use . to indicate a space. We can use any length of . as long as there's no space between them
 ```css
 .grid-container {
     display: grid;
     grid-template: repeat(5, 1fr) / repeat(13, 1fr);
     grid-template-areas: 
         ". nav nav head head head head head head head head head head"
-        "nav nav main main main main main main main aside aside aside"
-        "nav nav main main main main main main main aside aside aside"
-        "nav nav main main main main main main main aside aside aside"
-        /* white space: any length of . as long as there's no space between them  */
+        ". nav nav main main main main main main main aside aside aside"
+        ". nav nav main main main main main main main aside aside aside"
+        ". nav nav main main main main main main main aside aside aside"
         ".... .... foot foot foot foot foot foot foot foot foot foot";
 }
 
-    
 header {
     grid-area: head;
     background-color: palegoldenrod;
@@ -116,8 +143,13 @@ footer {
     background-color: gold;
 }
 ```
+<img src="../Images/grid-area.png" width="400">
 
-#### grid-area
+* when adding number after grid-area, it means:  
+row-start:  
+column-start:  
+row-end:  
+column-end:   
 ```css
 .dice {
 	display: grid; 
@@ -126,14 +158,16 @@ footer {
 }
 
 .pos-1 {
-    /* row, column */
+    /* row-start: 1 /
+    column-start: 1 /
+    row-end: auto /
+    column-end: auto */
 	grid-area: 1 / 1
 }
 
 .pos-2 {
 	grid-area: 1 / 2
 }
-
 ...
 
 .pos-8 {
@@ -146,20 +180,24 @@ footer {
 ```
 ![alt text](../Images/dice-with-pip.png)
 
-## grid-auto-flow: dense & auto-fit
-grid-auto-flow: dense - Pack the grid items as dense as possible.  
+## Fluid
+* `grid-auto-flow: dense`: It ignore the HTML order and packs the grid items as dense as possible.  
+<img src="../Images/grid-auto-flow-before.png" width="200">
+<img src="../Images/grid-auto-flow-after.png" width="200">
+
+*  `auto-fit`: the image will always fluid when needed, and automatically generates as many columns as possible. 
+*  `minmax(min, max)`: define a size range that is greater than or equal to min, and less than or equal to max. The image not long has a fixed width, but has a flexible width that is only constrained by the min value. (It won't go less than 100px in the example).
+<img src="../Images/minmax-before.png" width="200">
+<img src="../Images/minmax-after.png" width="200">
 
 ```css
 .grid-container {
     display: grid;
     grid-gap: .5em;
-    /* auto-fit: the image will always fuid when needed, and automatically generates as many columns as possible. */
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 
-    /* grid-auto-row: specify a given value to all the implicitely generated row tracks.   */
     grid-auto-rows: 75px;
 
-    /* grid will ignore the html order, and remove the extra space */
     grid-auto-flow: dense;
 }
 

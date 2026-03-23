@@ -358,7 +358,6 @@ totalList
 >>> "noodles,meat,sauce,mozzarellanoodles,sauce,mozzarella,kampot pepper" 
 ```
 
-
 ## Array destructuring
 It is a concise way to extract values from an array and assign them to distinct `variables`.
 
@@ -413,7 +412,10 @@ console.log(userObj)
 [{userName: 'Wayne', password: '123456'}]
 {userName: 'Wayne', password: '123456'}
 ```
-
+* In the filter example, remember to add `[0]` so it is an obejct instead of a new array. Only in this case, the original data will change!
+```js
+const orderedProduct = menuArray.filter(menu => menu.id === Number(e.target.dataset.id))[0]
+```
 
 
 

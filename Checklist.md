@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 ```
-<img src="../Images/viewport.png" width="400"> 
+<img src="Images/viewport.png" width="400"> 
 
 ## box-sizing
 When we add the padding or margin to the element, it makes the whole element bigger.
