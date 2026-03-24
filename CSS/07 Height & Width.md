@@ -19,8 +19,18 @@ for span, we need to change the display to **inline-block**, otherwise we can't 
 ```
 ![alt text](../Images/span-width.png)
 
-### button
-In flex, the button usually stretch to the whole width. To make it just as wide as the text, we can change the display to **block**, and add **margin**. 
+## button
+* In common cases, we only need to set the following codes to make the button fit the width of the content!
+```css
+.btn--bg {
+	display: block; 
+	margin-left: auto; 
+	margin-right: auto; 
+	width: fit-content;
+}
+```
+
+* In flex, the button usually stretch to the whole width. To make it just as wide as the text, we can change the display to **block**, and add **margin**. 
 ```html
 <div class="settings-container">
     <div>1</div>
@@ -45,6 +55,9 @@ In flex, the button usually stretch to the whole width. To make it just as wide 
 ```
 <img src="../Images/button-width.png" width="300"/>
 <img src="../Images/button-wide.png" width="300"/>
+
+
+
 
 ## Margin & Padding & gap
 margin can be set as negative

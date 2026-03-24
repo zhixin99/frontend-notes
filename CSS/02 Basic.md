@@ -5,6 +5,13 @@ RGBA stands for Red, Green, Blue, and Alpha
 * The red, green, and blue values range from 0 to 255 (or 0–100%)
 * Alpha ranges from 0 (fully transparent) to 1 (fully opaque)
 
+## naming
+BEM (Block, Element, Modifier).  
+|Part | Name | Description | Example|
+|---------------|---------------|---------------|---------------|
+|Block|header|The standalone entity that is meaningful on its own.|header|
+|Element|__|A part of the block that has no standalone meaning|header__logo-container|
+|Modifier|--|A flag used to change appearance or behavior.|header__logo--active|
 ## Organisation with comment
 ```css
 body{

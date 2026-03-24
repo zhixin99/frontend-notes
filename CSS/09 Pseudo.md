@@ -70,3 +70,10 @@ div.card-slot:nth-of-type(1) {
     cursor: not-allowed;
 }
 ```
+
+## last-child
+```css
+.header__sm-menu li:not(:last-child) {
+    border-bottom: 1px solid var(--color-black);
+}
+```

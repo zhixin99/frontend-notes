@@ -40,6 +40,12 @@ only for screen readers and we don't want them render on the page
 }
 ```
 
+## lazy loading
+Don't download this image until the user scrolls down and is about to see it.
+```css
+loading="lazy"
+```
+
 ## Common design
 ### box-shadow
 * X and Y offsets relative to the element 

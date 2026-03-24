@@ -43,7 +43,6 @@
 </audio>
 ```
 
-
 ## Table
 | Tag Name        | Meaning / Use                                                 | Attributes       | 
 | --------------- | ------------------------------------------------------------- | ---------------- | 
@@ -99,19 +98,21 @@
 | `<li>`          | List item (inside `<ul>` or `<ol>`).                          |
 
 
-
 | Tag Name        | Meaning / Use                                                 | Attributes       | Usage       | 
 | --------------- | ------------------------------------------------------------- | ---------------- | ----------- | 
 | `<dl>`          | Description list.                                             |                  | metadata 
 | `<dt>`          | Description term (inside `<dl>`).                             |                  |
 | `<dd>`          | Description details (inside `<dl>`).                          |                  |
 
-
 | Tag Name        | Meaning / Use                                                 | Attributes       | Usage       | 
 | --------------- | ------------------------------------------------------------- | ---------------- | ----------- | 
 | `<br>`          | Line break.                                                   |
 | `<hr>`          | Horizontal line (divider).                                    |
 
+## Semantic elements
+| Tag Name        | Meaning / Use                                                 | Attributes       | 
+| --------------- | ------------------------------------------------------------- | ---------------- | 
+| `<time>`          | Indicate a date / time                         |
 
 ## Formatting Elements
 
