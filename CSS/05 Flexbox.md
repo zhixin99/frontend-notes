@@ -1,25 +1,5 @@
 # Flexbox
 
-## Limit the stretch and reposition
-The default behaviour of a child element of a flex box container is to `vertically stretch` to fill the container.  
-
-We can use `align-self` property to limit the stretch
-
-We can also use `margin` property to 
-- limit the stretch
-- push the element to a certain position
-
-### align-self
-It allows us to take a control of an **individual** element's alignment when it is inside a flex container. 
-```css
-button {
-    align-self: center;
-    align-self: flex-bottom;
-    align-self: flex-start;
-}
-```
-![alt text](../Images/Align-self.png)
-
 ### margin auto on flexbox children
 ```css
 .meme-container {

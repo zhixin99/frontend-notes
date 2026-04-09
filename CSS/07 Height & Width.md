@@ -56,7 +56,44 @@ for span, we need to change the display to **inline-block**, otherwise we can't 
 <img src="../Images/button-width.png" width="300"/>
 <img src="../Images/button-wide.png" width="300"/>
 
+## Limit the vertical stretch
+The default behaviour of a child element of a flex box container is to `vertically stretch` to fill the container.  
 
+We can use `align-self` property to limit the stretch
+
+We can also use `margin` property to 
+- limit the stretch
+- push the element to a certain position
+
+### align-self
+It allows us to take a control of an **individual** element's alignment when it is inside a flex container. 
+```css
+button {
+    align-self: center;
+    align-self: flex-bottom;
+    align-self: flex-start;
+}
+```
+![alt text](../Images/Align-self.png)
+
+## Viewpoint height 
+* With a fixed header, things become complex: 
+    * main-content = 100vh  
+    * header = 70px floating  
+    * Total visible usage: 100vh + 70px = overflow, even though they overlap. This is visual stacking.  
+
+* To correct this, minus the height of the header from the main height
+```css
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    height: calc(100vh - 70px); 
+    margin-top: 70px; 
+}
+```
 
 
 ## Margin & Padding & gap

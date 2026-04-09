@@ -21,6 +21,20 @@ const obj = {
 };
 ```
 
+## Get all the keys in an array
+```js
+const obj = {
+    name: "Tom",
+    age: 10,
+    grade: 4
+}
+
+const keys = Object.keys(obj)
+
+console.log(keys)
+>>> ["name", "age", "grade"]
+```
+
 ## Retrieving a Value - dot notaion 
 There are two ways to retrieve the value for a given key, dot notation and bracket notation.  
 ```js

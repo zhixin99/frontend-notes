@@ -68,7 +68,7 @@ export default function Pad(props) {
 ```
 
 ## Styles
-`camelCase` all the css attributes. 
+style prop must be an `object` with `camelCased` property names.
 ```jsx
 import React from "react"
 import padsData from "./pads"
@@ -77,7 +77,6 @@ export default function App({ darkMode }) {
     const [pads, setPads] = React.useState(padsData)
 
     const styles = {
-        // Dom here
         backgroundColor: darkMode ? "#222222" : "#cccccc"
     }
 
@@ -94,6 +93,7 @@ export default function App({ darkMode }) {
     )
 }
 ```
+
 
 ## render an array of jsx element
 React can't render an regular object, but it can render an `array` of jsx element.

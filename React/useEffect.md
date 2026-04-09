@@ -28,6 +28,8 @@ useEffect() has 2 parameters:
 If any of the values in this array `change` between those two renders, then react will know that it should `run the function again.`
     * if we leave it as an empty array, it means that the `effect function` will only run the first time the `component` mounts to the page
 
+## fetch api request 
+
 ## cleanup function
 * we can `return` a cleanup function in the useEffect first parameter(the callback function)
 * It means if the component ever `unmounts`, just run the code that I put inside of this function, 

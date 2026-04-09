@@ -152,7 +152,7 @@ for (let i = 0; i < array.length; i++) {
 // Run the DOM out of the loop to reduce the cost
 ulEl.innerHTML = lineItems;
 ```
-* When writing HTML with Javascript, **attribute values** must be `quoted`
+* When writing HTML with Javascript, it's better to quote **attribute values**.
 ```js
 src = "xxx"
 container.innerHTML = `<img src="${src}">`
@@ -222,13 +222,6 @@ container.addEventListener('click', function(e){
     document.getElementById(e.target.id).parentElement.style.backgroundColor = 'lightblue'
 })
 ```
-
-
-
-
-
-
-
 
 ## .disabled
 ```html

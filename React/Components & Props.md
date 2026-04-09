@@ -120,7 +120,9 @@ export default function App() {
 }
 ```
 
-## Different Data Types
+## Pass Different Data Types
+
+### Numbers
 Numbers has to be sent inside curly brackets to be treated as numbers:
 ```jsx
 createRoot(document.getElementById('root')).render(
@@ -137,7 +139,7 @@ createRoot(document.getElementById('root')).render(
 );
 ```
 
-## Pass on object to props
+### Pass on object to props
 ```jsx
 export default function App() {
     
@@ -175,6 +177,11 @@ export default function Entry(props) {
         </article>
     )
 }
+```
+
+### JSX element
+```jsx
+
 ```
 
 ## Spread object
