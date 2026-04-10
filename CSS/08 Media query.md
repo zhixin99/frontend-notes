@@ -3,6 +3,21 @@ Write your basic CSS with mobile device in mind first.
 
 Use media queries to adjust the design and layout for wider screen users. 
 
+## Size
+```css
+@media (min-width: 420px) {
+}
+
+@media (min-width: 550px) {
+}
+
+@media (min-width: 720px) {  
+}
+
+@media (min-width: 850px) {  
+}
+```
+
 ## font-size
 ```css
 @media (min-width: 500px) and (max-width: 799px) {

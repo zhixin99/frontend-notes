@@ -54,6 +54,24 @@ input:focus, input:hover{
     margin-right: 5px;
 }
 ```
+Customized underline
+```css
+span {
+    position: relative;
+}
+
+span:before {
+    position: absolute;
+    content: '';
+    height: .2em;
+    width: 80%;
+    bottom: .1em;
+    z-index: -1;
+    background: #71AE21; 
+}
+```
+<img src="../Images/underline.png" width="400"/>
+
 
 ## nth-of-type
 ```js

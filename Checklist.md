@@ -78,4 +78,4 @@ text-shadow: 0px 0px 20px #aaaaaa;
 * Pair the color with shape
 * Alt text for img
 * aria: aria-live, aria-press, aria-checked, aria-label
-    * Add the aria-label for input, Link, button,
+    * Add the aria-label for input, Link, button

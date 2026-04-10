@@ -29,6 +29,22 @@ If any of the values in this array `change` between those two renders, then reac
     * if we leave it as an empty array, it means that the `effect function` will only run the first time the `component` mounts to the page
 
 ## fetch api request 
+```jsx
+import React from "react"
+import { useParams } from "react-router-dom"
+
+export default function VanDetail() {
+    const params = useParams()
+    
+    React.useEffect(() => {
+        fetch(`/api/vans/${params.id}`)
+            .then(res => res.json())
+            .then(data => console.log(data))
+    }, [params.id])
+    
+    return <h1>Van detail page goes here</h1>
+}
+```
 
 ## cleanup function
 * we can `return` a cleanup function in the useEffect first parameter(the callback function)
