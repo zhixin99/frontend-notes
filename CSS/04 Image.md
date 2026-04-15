@@ -27,6 +27,21 @@
 }
 ```
 
+### background-size
+1. background-size: cover => it will always stretch the image to cover the whole place.   
+* In wide screen, the top and bottom can be cropped.   
+<img src="../Images/cover-wide.png" width="400">
+
+* In narrow screen, the right and left can be cropped.   
+<img src="../Images/cover-narrow.png" width="200">
+
+2. background-size: contain => it will always contain the whole image.   
+* In narrow screen, it may look wired if we still use the image for the wide screen.   
+<img src="../Images/contain.png" width="200">
+
+3. background-size: auto 100% => it will cut the right and left side if needed, but make sure the top and bottom is not cut. 
+<img src="../Images/customized-wide.png" width="400">
+<img src="../Images/customized-narrow.png" width="200">
 
 ## Resize the image: object-fit
 1. We can set the container and set it the correct width and height we want
