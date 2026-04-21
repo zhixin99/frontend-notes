@@ -121,7 +121,6 @@ export default function App() {
 ```
 
 ## Pass Different Data Types
-
 ### Numbers
 Numbers has to be sent inside curly brackets to be treated as numbers:
 ```jsx
@@ -138,6 +137,27 @@ createRoot(document.getElementById('root')).render(
         }}
     />
 );
+```
+
+### JSX element
+wrap the JSX element in {}
+```jsx
+<LearnSection 
+    icon={<i class="fa-solid fa-layer-group section-header-icon"></i>}
+    title={t('dashboard.courses')}
+>
+    <div className="all-courses-container">
+        {unitsEl}
+    </div>
+</LearnSection>
+```
+
+### Bolean
+```jsx
+<ProjectCard
+    isFeatured={true}
+/>
+
 ```
 
 ### Pass on object to props
@@ -180,18 +200,7 @@ export default function Entry(props) {
 }
 ```
 
-### JSX element
-wrap the JSX element in {}
-```jsx
-<LearnSection 
-    icon={<i class="fa-solid fa-layer-group section-header-icon"></i>}
-    title={t('dashboard.courses')}
->
-    <div className="all-courses-container">
-        {unitsEl}
-    </div>
-</LearnSection>
-```
+
 
 ## Spread object
 ```jsx
