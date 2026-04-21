@@ -120,6 +120,7 @@ export function Section({color}) {
     color: var(--color); 
 }
 ```
+All the `children elements` under the article element can use the `custom variable`. 
 
 
 ## render an array of jsx element
