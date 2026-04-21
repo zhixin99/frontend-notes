@@ -21,3 +21,12 @@ declineBtn.addEventListener('mouseenter', function(){
     
 })
 ```
+
+## e.stopPropagation()
+```js
+<div id="parent">
+  <button id="child">点我</button>
+</div>
+```
+If we click the button, the event bubbling is like: button -> 
+div -> body → document. 

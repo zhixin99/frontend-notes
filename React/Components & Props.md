@@ -126,7 +126,8 @@ export default function App() {
 Numbers has to be sent inside curly brackets to be treated as numbers:
 ```jsx
 createRoot(document.getElementById('root')).render(
-    <Car year={1969} 
+    <Car 
+        year={1969} 
         comments={[
         {author: "", text: "", title: ""},
         {author: "", text: "", title: ""}
@@ -180,8 +181,16 @@ export default function Entry(props) {
 ```
 
 ### JSX element
+wrap the JSX element in {}
 ```jsx
-
+<LearnSection 
+    icon={<i class="fa-solid fa-layer-group section-header-icon"></i>}
+    title={t('dashboard.courses')}
+>
+    <div className="all-courses-container">
+        {unitsEl}
+    </div>
+</LearnSection>
 ```
 
 ## Spread object
