@@ -68,7 +68,11 @@ export default function Pad(props) {
 ```
 
 ## Styles
-style prop must be an `object` with `camelCased` property names.
+- style prop must be an `object` 
+    - Outer {}: Tells JSX you are writing JavaScript.
+    - Inner {}: This is the actual object.
+- Standard CSS properties (backgroundColor) use `camelCase`. 
+- CSS Variables (Custom Properties) must be written as strings (e.g., "--color").
 ```jsx
 import React from "react"
 import padsData from "./pads"
@@ -91,6 +95,29 @@ export default function App({ darkMode }) {
             </div>
         </main>
     )
+}
+```
+
+### pass the color
+You assign the color to a `custom variable name`, then use that variable in your CSS file.  
+Pros: Clean separation of concerns. You can use that one variable for text, borders, and shadows simultaneously in your CSS.
+```jsx
+export function Section({color}) {
+    return (
+        <article style={{ "--color": color }}> ... </article>
+    )
+
+}
+
+```
+```jsx
+<Section 
+    color="var(--color-green)"
+/>   
+```
+```css
+.project-card__title { 
+    color: var(--color); 
 }
 ```
 
