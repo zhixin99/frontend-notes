@@ -22,36 +22,6 @@ HTTP is a protocol(an agreed and standard way of doing something) for determingi
     * body information
     * client information
 
-## REST
-Representational State Transfer  
-* REST is a design pattern to provide a standard way for clients and servers to communicate with each other. 
-### Princile of REST
-1. Client & Server seperation
-* For a RESTful API, The server isn't responsible to figure out how to display the data; It just send data (JSON in most cases) to the client and let the client itself to render the data. 
-    * Client: Request JSON data. 
-    * Server: Send JSON data to client.
-* If we are not adhering to the REST
-    * Client: Navigate to a website in a browser.
-    * Server: `Build HTML page with data` and send them back. It's **server side rendering.** 
-    
-2. Statelessness: It forgets the interaction after the response is sent.
-
-3. Accessing resources: There's a standard way of setting the endpoints.
-
-### Resourses
-* /bike
-* `URL parameter`: 
-    * /bike/:id
-* `Nested resources`: 
-    * /bike/1/reviews
-    * /posts/1/comments
-    * /albums/1/photos
-    * /users/1/albums
-    * /users/1/todos
-    * /users/1/posts
-* `Query string`: /bikes/?type=mountain&brand=nike
-
-![alt text](../Images/Nested-resources.png)
 
 ## Client and server
 * Client: Any device that makes a `request` of to get data **(resource)** from somewhere
@@ -159,3 +129,54 @@ navigator.geolocation.getCurrentPosition((position) => {
 ```
 ### <a href="https://openweathermap.org/current?collection=current_forecast#geo" >OpenWeather API</a>
 ### <a href="https://imgflip.com/api" >Meme Generator API</a>
+
+## Architectures
+`GraphQL` and `REST` are two completely different architectures for how a client talks to a server.
+
+
+| Feature | REST | GraphQL |
+| :--- | :--- | :--- |
+| **Endpoints** | Multiple (e.g., `/products`, `/categories`, `/prices`) | **Single** (usually just `/graphql`) |
+| **Data Control** | The **Server** decides what data you get. | The **Client** (you) decides what data to return. |
+| **Payload Size** | Often "heavy" (returns every field in the database). | **"Lean"** (you only request the specific fields you need). |
+| **Versioning** | Hard (requires new URLs like `/v1/` or `/v2/`). | **Easy** (just add new fields to the existing schema). |
+
+## REST
+* REST (REpresentational State Transfer) is a set of architectural guidelines.
+* REST is a `design pattern` to provide a standard way for clients and servers to communicate with each other. 
+### Princile of REST
+1. Client & Server seperation
+* A RESTful API is a `client side fetching`. The server isn't responsible to figure out how to display the data; It just send data (JSON in most cases) to the client and let the client itself to render the data. 
+    * Client: Request JSON data. 
+    * Server: Send JSON data to client.
+* If we are not adhering to the REST
+    * Client: Navigate to a website in a browser.
+    * Server: `Build HTML page with data` and send them back. It's **server side rendering.** 
+    
+2. Statelessness: It forgets the interaction after the response is sent.
+
+3. Accessing resources: There's a standard way of setting the endpoints.
+
+### Resourses
+* /bike
+* `URL parameter`: 
+    * /bike/:id
+* `Nested resources`: 
+    * /bike/1/reviews
+    * /posts/1/comments
+    * /albums/1/photos
+    * /users/1/albums
+    * /users/1/todos
+    * /users/1/posts
+* `Query string`: /bikes/?type=mountain&brand=nike
+
+![alt text](../Images/Nested-resources.png)
+
+## GraphQl
+* GraphQL stands for Graph Query Language.
+    * The "QL" part: This is the actual language you use to write that "note" to the server (the part you saw in the Dirk POST body).
+    * The "Runtime" part: It is also a server-side engine that executes those queries using a type system you define for your data.
+* Most browsers and servers have a limit on how long a URL can be (usually around 2,000 characters). A complex query with nested products, prices, images, and brand details can easily exceed that limit. If they used GET, the URL would "break" or get cut off. 
+* In GraphQL, this logic is a structured `JSON object`. It’s much "cleaner" to send that structure in a `POST body` than to try and cram it into a URL string.
+* I am POSTing a question to the server, and the server is giving me the answer.
+

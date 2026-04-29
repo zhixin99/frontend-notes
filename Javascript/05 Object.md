@@ -56,6 +56,10 @@ obj[key];
 obj.key // ❌ It is same as obj["key"]
 ```
 
+## Option Chain
+```js
+const productList = products?.results?.results || []
+```
 ## Adding or Changing a Value
 You can add or change a value using the assignment operator =. Again, there are dot and bracket notations available.
 ```js

@@ -12,24 +12,41 @@ https://react.dev/reference/react-dom/components/common
 />
 ```
 
-### Input - onChange event
+## Form 
+onchange and onSubmit
 ```jsx
-import { useState } from "react"
+import { useState } from 'react';
+import { createRoot } from 'react-dom/client';
 
-export default function Main() {
-    ...
+function MyForm() {
+  const [name, setName] = useState("");
 
-    function handleChange() {
+  function handleChange(e) {
+    setName(e.target.value);
+  }
 
-    }
+  function handleSubmit(e) {
+    e.preventDefault();
+    alert(name);
+  }
 
-    return (
-        <label>Bottom Text
-            <input
-                onChange={handleChange}
-            />
-    )
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>Enter your name:
+        <input
+          type="text" 
+          value={name}
+          onChange={handleChange}
+        />
+      </label>
+      <input type="submit" />
+    </form>
+  )
 }
+
+createRoot(document.getElementById('root')).render(
+  <MyForm />
+);
 ```
 
 ## Add eventListener
