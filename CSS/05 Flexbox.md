@@ -24,10 +24,11 @@
 ```css
 .thumbnails {
     display: flex;
-    /* wrap child elements with a max width instead of just laying them out horizontally. */
+    /* wrap child elements with a max width */
     flex-wrap: wrap;
     max-width: 560px;
     margin: 50px auto;
+    justify-content: center;
 }
 
 .flex-item {
@@ -41,6 +42,7 @@
     flex: 1 200px;
 }
 ```
+![alt text](../Images/wrap.png)
 
 ## reorder the flex items
 ### flex-direction

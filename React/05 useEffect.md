@@ -9,7 +9,7 @@
 * That's why we should put the `side effect` in the `useEffect`
 
 ## useEffect
-* useEffect is a React Hook that lets you synchronize a component with an `external` system.
+* useEffect is a React Hook that lets you synchronize a component with an `external` system. The function that runs inside the useEffect is the side effect that we created. For example, if we run a call API function inside the useEffect(), the side effect is **call the API**.
 * useEffect let other codes run first
 ```jsx
 React.useEffect(()=> {
@@ -28,7 +28,7 @@ useEffect() has 2 parameters:
 If any of the values in this array `change` between those two renders, then react will know that it should `run the function again.`
     * if we leave it as an empty array, it means that the `effect function` will only run the first time the `component` mounts to the page
 
-## fetch api request 
+## 1. fetch api request 
 ```jsx
 import React from "react"
 import { useParams } from "react-router-dom"
@@ -46,9 +46,57 @@ export default function VanDetail() {
 }
 ```
 
-## cleanup function
-* we can `return` a cleanup function in the useEffect first parameter(the callback function)
-* It means if the component ever `unmounts`, just run the code that I put inside of this function, 
+## 2. Interact with window(browser)
+1. For the WindowTracker component, the `useEffect` will only run in the inital render because the independency array is empty. However, when we resize the window, the **browser**(not React) triggers the **event listener** inside the useEffect. The listener calls the setWindowWidth, which triggers the rerender of the component to show the new width. 
+2. If we toggle the **Toggle WindowTracker button** on the website many times, and then resize the the screen, we will find that the "Resized" appear many times in the console. Everytime we toggle the component "on", the `useEffect` runs, and it **adds a new event listener** on the window. If we toggle it 10 times, the window now has 10 separate listeners all listening for the resize event.
+3. If we won't need to interact with the outside system, we need to clean up any **side effect** that we have created. In this case, we need to remove the event listener. 
+```jsx
+import React from "react"
+import WindowTracker from "./WindowTracker"
+
+export default function App() {
+
+    const [show, setShow] = React.useState(true)
+    
+    function toggle() {
+        setShow(prevShow => !prevShow)
+    }
+
+    return (
+        <main className="container">
+            <button onClick={toggle}>
+                Toggle WindowTracker
+            </button>
+            {show && <WindowTracker />}
+        </main>
+    )
+}
+```
+
+```jsx
+import React from "react"
+
+export default function WindowTracker() {
+    const [windowWidth, setWindowWidth] = React.useState(window.innerWidth)
+    
+    React.useEffect(() => {
+        window.addEventListener("resize", function() {
+            console.log("Resized")
+            setWindowWidth(window.innerWidth)
+        })
+    }, [])
+    
+    return (
+        <h1>Window width: {windowWidth}</h1>
+    )
+}
+
+```
+
+cleanup function
+* To clean the side effect when the component unmounts, we can **return** a cleanup function in the useEffect first parameter(the callback function)
+    * Toggle On: WindowTracker mounts. Listener #1 is added.
+    * Toggle Off: React calls the cleanup function. Listener #1 is removed.
 ```js
 import React from "react"
 
@@ -56,11 +104,14 @@ export default function WindowTracker() {
     const [windowWidth, setWindowWidth] = React.useState(window.innerWidth)
 
     React.useEffect(() => {
+
         function watchWindowWidth () {
             console.log("Resized")
             setWindowWidth(window.innerWidth)
         }
+
         window.addEventListener("resize", watchWindowWidth)
+        
         return function() {
             console.log("Cleaning up...")
             window.removeEventListener("resize", watchWindowWidth)
@@ -68,7 +119,7 @@ export default function WindowTracker() {
     }, [])
 
     return (
-    <h1>Window width: {windowWidth}</h1>
+        <h1>Window width: {windowWidth}</h1>
     )
 }
 ```

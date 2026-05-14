@@ -167,7 +167,7 @@ form.addEventListener("submit", function(){
     <input type="checkbox" id="accept-terms">
 </div>
 ```
-- Use `<fieldset>` and `<legend>` tags to group the set and provide the context for screen reader users
+- Use `<fieldset>` and `<legend>` tags to group the set and provide the context for screen reader users. This tells screen readers "These xx options all belong to the same category."
 - Give each input element a `name` and a `value` so we can get from formData.
 ```html
 <fieldset>

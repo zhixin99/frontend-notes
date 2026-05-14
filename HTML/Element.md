@@ -3,9 +3,13 @@
 ## Core tags
 | Tag Name        | Meaning / Use                                                 | Attributes       | 
 | --------------- | ------------------------------------------------------------- | ---------------- | 
-| `<p>`           | Paragraph of text.                                            |
-| `<div>`         | Division or container for grouping elements (block-level).    |
-| `<a>`           | Hyperlink (anchor).                                           | href <br> target="_blank"
+| `<p>`           | Paragraph of text.                                            | |
+| `<div>`         | Division or container for grouping elements (block-level).    | |
+| `<a>`           | Hyperlink (anchor).                                           | href <br> target="_blank" |
+| `<span>`        |   It doesn’t "mean" anything to the browser, but it is incredibly useful for **styling** or **targeting specific bits** of content.                                     |     |  
+  
+
+
 
 ## Headings
 - Only use one `h1` per page. No more, no less.  
