@@ -1,5 +1,44 @@
 # HTML
 
+## font from Google
+```html
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- get the font weight 300 and 900 -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/xxx.css"></link>
+<head>
+```
+
+## Relative path syntax
+### Look in the current directory
+```html
+<img src="cat.png">
+
+<img src="image/cat.png">
+
+<!--  add an dot slash do the same thing-->
+<img src="./image/cat.png">
+```
+
+### Start from the parent directory of the current file
+```html
+<img src="../image/cat.png">
+```
+```css
+/* go back to 2 levels */
+.image-div {
+    background-image: url('../../images/dog.jpg');
+}
+```
+
+### Start from the project root directory
+```html
+<img src="/image/cat.png">
+```
+
+
 ## Core tags
 | Tag Name        | Meaning / Use                                                 | Attributes       | 
 | --------------- | ------------------------------------------------------------- | ---------------- | 
@@ -8,9 +47,6 @@
 | `<a>`           | Hyperlink (anchor).                                           | href <br> target="_blank" |
 | `<span>`        |   It doesn’t "mean" anything to the browser, but it is incredibly useful for **styling** or **targeting specific bits** of content.                                     |     |  
   
-
-
-
 ## Headings
 - Only use one `h1` per page. No more, no less.  
 - Heading numbers should be consecutive. No skip.   

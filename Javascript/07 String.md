@@ -40,7 +40,7 @@ console.log(userName[-1]);
 >>> undefined
 ```
 
-## & .slice()
+## .slice()
 ```js
 let firstName = userName.slice(0, 4) 
 let lastName = userName.slice(5)  // without comma, it will take everything until the end
@@ -52,7 +52,14 @@ firstName = userName.slice(0, index)
 lastName = userName.slice(index+1)
 ```
 
-## .split
+## .split() - convert string to array
+```jsx
+const [currentWord, setCurrentWord] = useState("react")
+const letterArray = currentWord.split("")
+console.log(letterArray)
+
+['r', 'e', 'a', 'c', 't']
+```
 ```js
 const str = '2022-02-09';
 

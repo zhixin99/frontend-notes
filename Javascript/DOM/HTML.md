@@ -224,6 +224,14 @@ container.addEventListener('click', function(e){
 ```
 
 ## .disabled
+```jsx
+<button
+    isdisabled={isGameOver}
+>
+    {letter.toUpperCase()}
+</button>
+```
+
 ```html
 <!-- set the decrement button as disabled by default -->
 <button id="decrement" class="decrement" disabled>-</button>
