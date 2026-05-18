@@ -14,7 +14,7 @@
 </button>
 ```
 
-## aria-live & role
+## aria-live & role & sr-only
 * Check if any part of the page is dynamically rendered, including the popup, search result...
     * polite: If the user is currently reading a paragraph, the screen reader will not interrupt them. It waits until the user stops typing or the screen reader finishes speaking its current sentence.
     * assertive: Interrupts immediately. Clears the screen reader's queue and drops everything to read the update.
@@ -27,8 +27,18 @@
     {renderGameStatus()}
 </section>
 ```
-
-## sr-only section
+* Sometimes we can combine aria-live with sr-only, to tell the screen reader something has benn updated, but not display on the screen.
+```jsx
+return (
+    <div 
+        aria-live="polite" 
+        role="status"
+        className="sr-only"
+    >
+        {gameWon && <p>Congratulations! You won! Press "New Game" to start again.</p>}
+    </div>
+)
+```
 ```css
 .sr-only {
     position: absolute;
@@ -42,6 +52,21 @@
     border: 0;
 }
 ```
+* Another example, is to read the letter which is currently being rendered.
+* The screen reader can only read out the `string`, so we use `join`.
+* Add a `.` can let the screen reader pause between the letters.
+```jsx
+<section 
+    className="sr-only" 
+    aria-live="polite" 
+    role="status"
+>
+    <p>Current word: {currentWord.split("").map(letter => 
+    guessedLetters.includes(letter) ? letter + "." : "blank.")
+    .join(" ")}</p>
+</section>
+```
+<img src="./Images/game-reader.png" width=400px>
 
 ## aria-disabled
 * Announce when a `button is disabled`
@@ -109,19 +134,12 @@ return (
 
 ```
 
-## aria-live
-tell the assistive technology when a DOM change happens to this element, it should read out the new value of the content
+
 ```html
 <p id="activity" aria-live="polite">Find something to do</p>
 ```
 ### An example to show win status
-```jsx
-return (
-    <div aria-live="polite" className="sr-only">
-        {gameWon && <p>Congratulations! You won! Press "New Game" to start again.</p>}
-    </div>
-)
-```
+
 ```css
 .sr-only {
     position: absolute;
