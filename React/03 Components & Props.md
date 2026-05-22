@@ -84,40 +84,6 @@ function generateAllNewDice() {
             id: nanoid()
         }))
 }
-
-```
-
-## Destructure props
-```jsx
-export default function Contact({img, name}) {
-    return (
-        <article className="contact-card">
-            <img
-                src={img}
-                alt="Photo of Mr. Whiskerson"
-            />
-            <h3>{name}</h3>
-        </article>
-    )
-}
-```
-```jsx
-import Contact from "./Contact"
-
-export default function App() {
-    return (
-        <div className="contacts">
-            <Contact
-                img="./images/mr-whiskerson.png"
-                name="Mr. Whiskerson"
-            />
-            <Contact
-                img="./images/fluffykins.png"
-                name="Fluffykins"
-            />
-        </div>
-    )
-}
 ```
 
 ## Pass Different Data Types
@@ -200,6 +166,135 @@ export default function Entry(props) {
 }
 ```
 
+## children property
+- In React, whenever you put something inside a component's tags, React passes those elements to the component via a special prop called **children**.
+- React evaluates children dynamically depending on what you pass:
+    - 0 items: children is undefined.
+    - 1 item: children is a single React Element `(object)`.
+    - 2+ items: children becomes an `array` of React Elements.
+```jsx
+export default function ContentSection({sectionHeader, children}) {
+    return (
+        <div className="project-details-section">
+            <h3 className="project-details__content-title">{sectionHeader}</h3>
+            {children}
+        </div>
+    )
+}
+```
+```jsx
+import ContentSection from "./ContentSection"
+
+export default function ProjectContent() {
+    // all the codes between <ContentSection> and </ContentSection> are passed to the ContentSection as the children property
+    return (             
+        <ContentSection
+            sectionHeader="See Live"
+        >
+            <a href="#" className="btn" target="_blank">Live Link</a>
+            <p>Check out the deployment!</p>
+        </ContentSection>
+    )
+}
+```
+In this case, children will be an array containing two objects: 
+```jsx
+[
+  { type: "a", props: { ... } },
+  { type: "p", props: { children: "Check out the deployment!" } }
+]
+```
+
+## props spreading
+- When you use {...props} inside a JSX tag, you are telling React: "Take every key-value pair inside this object, **unpack** them, and hand them over as individual **attributes** to this HTML element." So the `props key` should be `native HTML attributes`!
+```jsx
+// App.js
+import Button from './Button';
+
+export default function App() {
+    return (
+        <Button 
+            type="submit"
+            className="primary-btn" 
+            onClick={() => alert('Clicked!')}
+        >
+            Click Me!
+        </Button>
+    );
+}
+```
+What Button component receives:
+```js
+props = {
+    type: "submit",
+    className: "primary-btn",
+    onClick: () => alert('Clicked!'),
+    children: "Click Me!"
+};
+```
+When `React` compiles your code, the spread operator unpacks that props object. It strips away the outer curly braces of the object and writes the properties directly into the <button> HTML tag as individual attributes.
+```jsx
+<button 
+    type={props.type} 
+    className={props.className} 
+    onClick={props.onClick}
+    children={props.children} 
+>
+```
+
+## destructure props
+```jsx
+export default function Contact({img, name}) {
+    return (
+        <article className="contact-card">
+            <img
+                src={img}
+                alt="Photo of Mr. Whiskerson"
+            />
+            <h3>{name}</h3>
+        </article>
+    )
+}
+```
+```jsx
+import Contact from "./Contact"
+
+export default function App() {
+    return (
+        <div className="contacts">
+            <Contact
+                img="./images/mr-whiskerson.png"
+                name="Mr. Whiskerson"
+            />
+            <Contact
+                img="./images/fluffykins.png"
+                name="Fluffykins"
+            />
+        </div>
+    )
+}
+```
+
+## rest operator
+* It is very useful when we need to combine **destructure props** and **props spreading**.
+* ...rest is another `object`. 
+    - In most cases, it stores all the key-value pairs from props whose key is the `native HTML attributes`, so that we can separate the other properties.
+    -  In this case, since children is not HTML attributes, it will be meaningless if we only use props spreading. 
+```jsx
+export function Button({children, ...rest}) {
+    return (
+        <button 
+            {...rest}
+        >
+            {children}
+        </button>
+    )
+}
+```
+
+## compond components
+- Components that **work together** to accomplish a greater objective than might make sense to try and accomplish with a single component alone.
+- compound components help you avoid having to **drill props** multiple levels down. Compound component "flatten" the heirarchy. Since I need to provide the children to render, the `parent-most component` has **direct access** to those "grandchild" components, to which it can pass whatever props it needs to pass **directly**.
 
 
 ## Spread object
@@ -226,37 +321,6 @@ export default function App() {
                 {entryElements}
             </main>
         </>
-    )
-}
-```
-
-## children property
-In React, whenever you put something inside a component's tags (like your links, paragraphs, or skills div), React passes those elements to the component via a special prop called **children**.
-```jsx
-export default function ContentSection({sectionHeader, children}) {
-    return (
-        <div className="project-details-section">
-            <h3 className="project-details__content-title">{sectionHeader}</h3>
-            {children}
-        </div>
-    )
-}
-```
-```jsx
-import ContentSection from "./ContentSection"
-
-export default function ProjectContent() {
-    // all the codes between <ContentSection> and </ContentSection> are passed to the ContentSection as the children property
-    return (
-        <section className="project-details">              
-            <ContentSection
-                sectionHeader="See Live"
-            >
-                <a href="#" className="btn" target="_blank">
-                    Live Link
-                </a>
-            </ContentSection>
-        </section>
     )
 }
 ```
