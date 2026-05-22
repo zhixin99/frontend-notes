@@ -1,9 +1,9 @@
-## Component
+# Component
 React components are meant to be `pure functions`.
 * When it is given same props or state, should always return the same interface. 
 * Rendering and re-rendering a component will never have any kind of side effect on an outside system
 
-# Props
+## Props
 We can pass neccessary props to the component when creating a new instance of the component
 ```jsx 
 // Contact.jsx
@@ -68,27 +68,10 @@ export default function App() {
     )
 }
 ```
-### nanoid
-A third party package that give us the id automatically
-```jsx
-import { nanoid } from "nanoid"
-
-const [dice, setDice] = useState(generateAllNewDice())
-
-function generateAllNewDice() {
-    return new Array(10)
-        .fill(0)
-        .map(() => ({
-            value: Math.ceil(Math.random() * 6), 
-            isHeld: false,
-            id: nanoid()
-        }))
-}
-```
 
 ## Pass Different Data Types
 ### Numbers
-Numbers has to be sent inside curly brackets to be treated as numbers:
+Numbers has to be sent inside `curly brackets` to be treated as numbers:
 ```jsx
 createRoot(document.getElementById('root')).render(
     <Car 
@@ -123,47 +106,6 @@ wrap the JSX element in {}
 <ProjectCard
     isFeatured={true}
 />
-
-```
-
-### Pass on object to props
-```jsx
-export default function App() {
-    
-    const entryElements = data.map((entry) => {
-        return (
-            <Entry
-                key={entry.id}
-                entry={entry}
-            />
-        )
-    })
-    
-    return (
-        <>
-            <Header />
-            <main className="container">
-                {entryElements}
-            </main>
-        </>
-    )
-}
-```
-```jsx
-export default function Entry(props) {
-    return (
-        <article className="journal-entry">
-            <div className="main-image-container">
-                <img 
-                    className="main-image"
-                    // entry is a property of props, and img is a property of entry
-                    src={props.entry.img.src} 
-                    alt={props.entry.img.alt}
-                />
-            </div>
-        </article>
-    )
-}
 ```
 
 ## children property
@@ -186,7 +128,6 @@ export default function ContentSection({sectionHeader, children}) {
 import ContentSection from "./ContentSection"
 
 export default function ProjectContent() {
-    // all the codes between <ContentSection> and </ContentSection> are passed to the ContentSection as the children property
     return (             
         <ContentSection
             sectionHeader="See Live"
@@ -232,7 +173,7 @@ props = {
     children: "Click Me!"
 };
 ```
-When `React` compiles your code, the spread operator unpacks that props object. It strips away the outer curly braces of the object and writes the properties directly into the <button> HTML tag as individual attributes.
+When `React` compiles your code, the spread operator unpacks that props object. It strips away the outer curly braces of the object and writes the properties directly into the HTML tag as individual attributes
 ```jsx
 <button 
     type={props.type} 
@@ -295,6 +236,102 @@ export function Button({children, ...rest}) {
 ## compond components
 - Components that **work together** to accomplish a greater objective than might make sense to try and accomplish with a single component alone.
 - compound components help you avoid having to **drill props** multiple levels down. Compound component "flatten" the heirarchy. Since I need to provide the children to render, the `parent-most component` has **direct access** to those "grandchild" components, to which it can pass whatever props it needs to pass **directly**.
+
+<img src="../Images/prop-drilling.png" width="400px">  
+<img src="../Images/compound-components.png" width="400px">  
+ 
+- However, if the data/state originates at the second or third level, but the fourth or fifth level down actually needs it, you are still trapped in props drilling under the traditional compound component pattern. To solve this, we will use the context or React.Children.
+
+## context
+- All the component will get the value from the provider. 
+- The provider is **not neccessarily at the highest level** of the the application, but it needs to be as high as it needs. If only a small subsection of the components need the context data, we can just put the provide somewhere at the common ancestor, but not the top level. 
+<img src="../Images/context.png" width="400px">
+
+
+Steps:
+- Create a new instance of context 
+- Access the context provider by using `.Provider` to wrap the components
+- Pass a value to all the components
+- Export the context
+- To pull the context value that is provided by the context provider, we need to use a hook `useContext()`
+```jsx
+import React,from "react"
+import Header from "./Header"
+import Button from "./Button"
+
+const ThemeContext = React.createContext()
+
+export default function App() {
+    return (
+        <ThemeContext.Provider value="dark">
+            <div className="container dark-theme">
+                <Header />
+                <Button />
+            </div>
+        </ThemeContext.Provider>
+    )
+}
+
+export { ThemeContext }
+``` 
+```jsx
+
+```
+
+### React.Children API && React.cloneElement()
+- Since we can't pass props to children like this, we need to change the original children to a new children, which can pass the props.
+```jsx
+<div className="menu">
+    {children prop=""}
+</div>
+```
+- **We are not allowed to run children.map() in React**. So we have to use React.Children, which is just an assistant that helps you loop through the children safely.
+    - The first parameter is the `array` that we want to **interacte with**. In this case, it is the `children` array.
+    - The second parameter is a call back function, the call back function will be called on every `child` of the array. 
+- React.cloneElement() duplicates a React element and adds the props which React.Children can accept, but orignal children can not accept.
+
+ 
+```jsx
+export default function Menu({ children }) {
+    const [open, setOpen] = React.useState(true)
+
+    function toggle() {
+        setOpen(prevOpen => !prevOpen)
+    }
+
+    // same as open: open, toggle: toggle
+    return (
+        <div className="menu">
+            {React.Children.map(children, (child) => {
+                return React.cloneElement(child, {
+                    open,
+                    toggle
+                })
+            })}
+        </div>
+    )
+```
+However, React.Children API && React.cloneElement() is not the best solution. It is delicate. It will break down if someone wrap the MenuDropdown with a div, and by then the **MenuDropdown is no long the direct children of Menu**. We are passing a prop to the div element and there will be an error!
+
+Also, if the state originates on the 2 level, and the 5 level needs it, we still need to use props drilling. 
+```jsx
+<Menu>
+    <MenuButton>Sports</MenuButton>
+    <div>
+        <MenuDropdown>
+            {sports.map(sport => (
+            <MenuItem key={sport}>{sport}</MenuItem>
+            ))}
+        </MenuDropdown>
+    </div>
+</Menu>
+```
+
+
+
+
+
+
 
 
 ## Spread object

@@ -170,7 +170,6 @@ console.log(guestsArr.join(' '))
 
 ## .map() method 
 * It gives us a new `array` and we're going to store the array in a const.   
-* If we don't need a new array it returns, we don't need to use map method.  
 
 ```js
 function getLabelsHtml(text, sender, ...staffObjs) {
