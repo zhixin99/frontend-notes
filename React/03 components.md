@@ -245,15 +245,16 @@ export function Button({children, ...rest}) {
 ## context
 - All the component will get the value from the provider. 
 - The provider is **not neccessarily at the highest level** of the the application, but it needs to be as high as it needs. If only a small subsection of the components need the context data, we can just put the provide somewhere at the common ancestor, but not the top level. 
+
 <img src="../Images/context.png" width="400px">
 
 
-Steps:
-- Create a new instance of context 
+- Create a new instance of context. 
+    - It doesn't matter how you call it. Usually if it is on the top level of the App, we can call it **ThemeContext**. If it is just on the menu level, we can call **MenuContext**.
 - Access the context provider by using `.Provider` to wrap the components
-- Pass a value to all the components
+- Pass a `value` to all the components. 
+    - It must always be literally written as value because ThemeContext.Provider is a built-in component, and `value` is a built-in prop name. 
 - Export the context
-- To pull the context value that is provided by the context provider, we need to use a hook `useContext()`
 ```jsx
 import React,from "react"
 import Header from "./Header"
@@ -274,8 +275,20 @@ export default function App() {
 
 export { ThemeContext }
 ``` 
+- To pull the context value that is provided by the context provider, we need to use a hook `useContext()`, so import the useContext
+- Also import the new instance of context we created
 ```jsx
+import { useContext } from "react"
+import { ThemeContext } from "./App"
 
+export default function Header() {
+    const value = useContext(ThemeContext)
+    return (
+        <header className={`${value}-theme`}>
+            <h1>{value[0].toUpperCase() + value.slice(1)} Theme</h1>
+        </header>
+    )
+}
 ```
 
 ### React.Children API && React.cloneElement()
