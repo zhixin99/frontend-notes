@@ -242,6 +242,45 @@ export function Button({children, ...rest}) {
  
 - However, if the data/state originates at the second or third level, but the fourth or fifth level down actually needs it, you are still trapped in props drilling under the traditional compound component pattern. To solve this, we will use the context or React.Children.
 
+### compond components with dot syntax
+- To simplify the import, we can create a new js file, and put the all the children as a property of the parent element. 
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import Menu from "./Menu/index"
+
+function App() {
+  const sports = ["Tennis", "Pickleball", "Racquetball", "Squash"]
+
+  return (
+    <Menu>
+      <Menu.Button>Sports</Menu.Button>
+      <Menu.Dropdown>
+        {sports.map(sport => (
+          <Menu.Item key={sport}>{sport}</Menu.Item>
+        ))}
+      </Menu.Dropdown>
+    </Menu>
+  )
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+```
+```js
+// ./Menu/index.js
+
+import Menu from "./Menu"
+import MenuButton from "./MenuButton"
+import MenuDropdown from "./MenuDropdown"
+import MenuItem from "./MenuItem"
+
+Menu.Button = MenuButton
+Menu.Dropdown = MenuDropdown
+Menu.Item = MenuItem
+
+export default Menu
+```
+
 ## context
 - All the component will get the value from the provider. 
 - The provider is **not neccessarily at the highest level** of the the application, but it needs to be as high as it needs. If only a small subsection of the components need the context data, we can just put the provide somewhere at the common ancestor, but not the top level. 
@@ -341,7 +380,8 @@ Also, if the state originates on the 2 level, and the 5 level needs it, we still
 ```
 
 
-
+## Headless component
+- Headless component doesn't have any styled UI to display, they are purely intended to provide functionality. 
 
 
 

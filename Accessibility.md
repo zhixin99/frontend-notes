@@ -3,6 +3,10 @@
 * Pair the color with shape
 * Alt text for img
 
+## aira
+* ARIA shorts for Accessible Rich Internet Applications. 
+* It fills in a gap when HTML's native sementics fall short. 
+
 ## aria-label
 * Add it for input, Link, button, to give the screen reader for context.
 * In this case, if we don't add the aria-label, the screen reader will just say A, B, C; But with the aria-label, the user know it is actually a letter. 
@@ -95,10 +99,6 @@ const keyboardElements = alphabet.split("").map(letter => {
 })
 ```
 
-# ARIA
-* ARIA shorts for Accessible Rich Internet Applications. 
-* It fills in a gap when HTML's native sementics fall short. 
-
 ## aria-checked
 Indicates whether the element is checked (true), unchecked (false)
 ```html
@@ -113,10 +113,52 @@ Indicates whether the element is checked (true), unchecked (false)
 </div>
 ```
 
-## aria-label
-direct the assistive technology how it should describe how the button is supposed to do
-```html
-<button id="get-activity" aria-label="Find a new activity."></button>
+## aira-expanded & aira-haspopup & role & aria-expand & useId
+- This is often used for a expanded menu
+- useId is a built in React Hook that allows us to generate stable IDs that will persist from one render to the next.
+```jsx
+export default function Menu({ children }) {
+    const [open, setOpen] = React.useState(false)
+    const menuId = React.useId()
+
+    function toggle() {
+        setOpen(prevOpen => !prevOpen)
+    }
+
+    return (
+        <MenuContext.Provider value={{open, toggle, menuId}}>
+            <div className="menu" role="menu">
+                {children}
+            </div>
+        </MenuContext.Provider>
+    )
+}
+
+export { MenuContext }
+```
+```jsx
+export default function MenuButton({ children }) {
+    const { toggle, open, menuId } = React.useContext(MenuContext)
+    return (
+        <Button 
+            onClick={toggle} 
+            aria-expanded={open} 
+            aria-haspopup="true"
+            aria-controls={menuId}
+        >{children}</Button>
+    )
+}
+```
+```jsx
+export default function MenuDropdown({ children }) {
+    const { open, menuId } = React.useContext(MenuContext)
+
+    return open ? (
+        <div className="menu-dropdown" id={menuId} >
+            {children}
+        </div>
+    ) : null
+}
 ```
 
 ## aria-press
@@ -131,8 +173,8 @@ return (
         ${props.isHeld ? "held" : "not held"}`}
     >{props.value}</button>
 )
-
 ```
+
 
 
 ```html
