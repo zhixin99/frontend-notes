@@ -383,7 +383,7 @@ Also, if the state originates on the 2 level, and the 5 level needs it, we still
 ## Headless component
 - Headless component doesn't have any styled UI to display, they are purely intended to provide functionality. 
 
-
+- Event bubbling: When you have a series of components that are nested inside each other, when you trigger the event inside the **nested child component**, the event will continue to bubble up the DOM tree and hit any event listener in any of the **parent component**. 
 
 
 
