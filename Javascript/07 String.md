@@ -8,20 +8,7 @@ console.log(s);
 >>> "hello"  // still hello
 ```
 
-
-## 1. Property 属性
-These function just describes what something is / has. Reading it does not perform work. No parameters.  
-Strings are primitive values, but when you access a property, JavaScript temporarily wraps the string in a String object:
-```js
-new String("hello").length
-```
-That wrapper object has properties like:
-- length
-- toUpperCase
-- slice  
-After the access, the wrapper is immediately discarded. This is why a primitive string can still have properties.  
-
-### .length 
+## .length 
 ```js
 let userName = "Jean";
 console.log(userName.length); // no parentheses
@@ -41,6 +28,8 @@ console.log(userName[-1]);
 ```
 
 ## .slice()
+- We can use .slice(0, -1), which is the whole string but the last word.
+
 ```js
 let firstName = userName.slice(0, 4) 
 let lastName = userName.slice(5)  // without comma, it will take everything until the end
@@ -65,48 +54,6 @@ const str = '2022-02-09';
 
 const result = str.split('-').at(-1);
 console.log(result); // '09'
-```
-
-## .indexOf() & .lastIndexOf() - Find the index
-```js
-let userName = "Jeane";
-console.log(userName.indexOf("e")); // index of the first occurance of "e"
->>> 1
-
-console.log(userName.lastIndexOf("e")); // index of the last occurance of "e"
->>> 4
-```
-
-## .trim() - Remove the spacing
-```js
-let userName = "   Jean   ";
-console.log(userName.trim());
-```
-
-## .toUpperCase() & .toLowerCase()
-```js
-let userName = "   Jean   ";
-console.log(userName.toUpperCase());
-```
-
-## .replaceAll()
-```js
-let userName = "Jean";
-console.log(userName.replaceAll("J", "Z"));
->>> Zean
-```
-
-## Comparison
-A dictionary (lexicographical) order is applied.
-```js
-'Apple' > 'Pear';
-// => false
-
-'a' < 'above';
-// => true
-
-'a' === 'A';
-// => false
 ```
 
 ## Template strings 
@@ -154,6 +101,54 @@ return `Congratulations ${name}!
 // Those spaces are printed as part of the output, causing indentation. 
 >>>     Class of 2024 
 ```
+
+## includes()
+same as array. 
+
+## .indexOf() & .lastIndexOf() - Find the index
+```js
+let userName = "Jeane";
+console.log(userName.indexOf("e")); // index of the first occurance of "e"
+>>> 1
+
+console.log(userName.lastIndexOf("e")); // index of the last occurance of "e"
+>>> 4
+```
+
+## .trim() - Remove the spacing
+- removing unwanted whitespace from the `beginning` and `end` of a string, but not the space between. 
+```js
+let userName = "   Jean   ";
+console.log(userName.trim());
+```
+
+## .toUpperCase() & .toLowerCase()
+```js
+let userName = "   Jean   ";
+console.log(userName.toUpperCase());
+```
+
+## .replaceAll()
+```js
+let userName = "Jean";
+console.log(userName.replaceAll("J", "Z"));
+>>> Zean
+```
+
+## Comparison
+A dictionary (lexicographical) order is applied.
+```js
+'Apple' > 'Pear';
+// => false
+
+'a' < 'above';
+// => true
+
+'a' === 'A';
+// => false
+```
+
+
 
 
 

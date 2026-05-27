@@ -344,117 +344,6 @@ findPriceExtremes([
 ])
 ```
 
-## + symbol
-`+` does NOT merge arrays. What actually happens:
-- Each array is converted to a string
-- Then the strings are concatenated
-```js
-const friendsList = ['noodles', 'sauce', 'mozzarella', 'kampot pepper'];
-const myList = ['noodles', 'meat', 'sauce', 'mozzarella'];
-
-const totalList = friendsList + myList
-totalList
->>> "noodles,meat,sauce,mozzarellanoodles,sauce,mozzarella,kampot pepper" 
-```
-
-## Array destructuring
-It is a concise way to extract values from an array and assign them to distinct `variables`.
-
-```js
-const numberOfMoons = [0, 2, 14];
-const [venus, mars, neptune] = numberOfMoons;
-
-neptune;
-// => 14
-```
-Leaving a position unnamed (by not writing any variable name) silently ignores that position.
-```js
-const deck = [5, 9, 7, 1, 8];
-
-const [firstCard] = deck
-
-console.log(firstCard)
->>> 5
-```
-Example: Elyse takes three cards and quickly moves the top card to the back, making the middle card the first card and the old bottom card the middle card. She doesn't need to call a single function.
-```js
-// we will pass in an array of 3 card as the parameter
-export function shiftThreeCardsAround(deck) {
-    const [firstCard, secondCard, thirdCard] = deck;
-    return [secondCard, thirdCard, firstCard];
-}
-```
-
-## Shallow copy
-* When we are copying a `single object` from an `array`, if the object changes, the original array will also change. 
-* When creating an const which holds an array of objects, JavaScript creates that array in memory. So the const holds a reference to the array in memory.   
-* When we copy an object from that array, JS will not create the object in the memory. So the object also holds a reference to the original **array in the memory**. 
-<img src="../Images/shallow-copy.png" width="400">
-
-```js
-const usersArray = [
-    {
-        userName: 'Tom',
-        password: '123456'
-    }
-]
-
-const userObj = usersArray[0]
-
-userObj.userName = "Wayne"
-
-console.log(usersArray)
-console.log(userObj)
-
->>>
-
-[{userName: 'Wayne', password: '123456'}]
-{userName: 'Wayne', password: '123456'}
-```
-* In the filter example, remember to add `[0]` so it is an obejct instead of a new array. Only in this case, the original data will change!
-```js
-const orderedProduct = menuArray.filter(menu => menu.id === Number(e.target.dataset.id))[0]
-```
-
-
-
-
-
-
-
-
-
-
-
-## .find()
-It returns the `value` of the first element in the array that passes the predicate test. The method returns undefined when none of the elements in the array pass the predicate test.
-```js
-const numbers = [1, 3, 5, 7, 9];
-numbers.find((num) => num < 5);
-// => 1
-```
-
-## .findIndex()
-The findIndex(predicate) is the same as the find() method, but it returns the (first) `index` of the element that passes the predicate test instead of the value. The method returns -1 when none of the elements in the array pass the predicate test.
-```js
-const numbers = [1, 3, 5, 7, 9];
-numbers.findIndex((num) => num > 7);
-// => 4
-numbers.findIndex((num) => num > 9);
-// => -1
-```
-
-## .indexOf() - Get the first index of the value
-```js
-const numbers = [1, 'two', 3, 'four']
-numbers.indexOf(1)
->>> 0
-```
-
--------------------------------------------------------
-
-
-
 ## .reverse()
 ```js
 const arr = [1, 2, 3]
@@ -537,8 +426,134 @@ arr.sort((item1, item2) => {
 )
 ```
 
+## + symbol
+`+` does NOT merge arrays. What actually happens:
+- Each array is converted to a string
+- Then the strings are concatenated
+```js
+const friendsList = ['noodles', 'sauce', 'mozzarella', 'kampot pepper'];
+const myList = ['noodles', 'meat', 'sauce', 'mozzarella'];
 
+const totalList = friendsList + myList
+totalList
+>>> "noodles,meat,sauce,mozzarellanoodles,sauce,mozzarella,kampot pepper" 
 ```
+
+## Array destructuring
+It is a concise way to extract values from an array and assign them to distinct `variables`.
+
+```js
+const numberOfMoons = [0, 2, 14];
+const [venus, mars, neptune] = numberOfMoons;
+
+neptune;
+// => 14
+```
+Leaving a position unnamed (by not writing any variable name) silently ignores that position.
+```js
+const deck = [5, 9, 7, 1, 8];
+
+const [firstCard] = deck
+
+console.log(firstCard)
+>>> 5
+```
+Example: Elyse takes three cards and quickly moves the top card to the back, making the middle card the first card and the old bottom card the middle card. She doesn't need to call a single function.
+```js
+// we will pass in an array of 3 card as the parameter
+export function shiftThreeCardsAround(deck) {
+    const [firstCard, secondCard, thirdCard] = deck;
+    return [secondCard, thirdCard, firstCard];
+}
+```
+
+### Rest operator
+When ... appears on the left-hand side of an assignment, those three dots are known as the rest operator. The three dots together with a variable name is called a `rest element`. It collects zero or more values, and stores them into a single array.  
+
+```js
+// ...everythingElse is called a rest element
+const [a, b, ...everythingElse] = [0, 1, 1, 2, 3, 5, 8];
+a;
+// => 0
+b;
+// => 1
+everythingElse;
+// => [1, 2, 3, 5, 8]
+```
+A rest element cannot have a trailing comma. It must be the last element in a destructuring assignment.
+```js
+const [...items, last] = [0, 1, 1, 2, 3, 5, 8];
+
+>>> SyntaxError
+```
+
+## Shallow copy
+* When we are copying a `single object` from an `array`, if the object changes, the original array will also change. 
+* When creating an const which holds an array of objects, JavaScript creates that array in memory. So the const holds a reference to the array in memory.   
+* When we copy an object from that array, JS will not create the object in the memory. So the object also holds a reference to the original **array in the memory**. 
+<img src="../Images/shallow-copy.png" width="400">
+
+```js
+const usersArray = [
+    {
+        userName: 'Tom',
+        password: '123456'
+    }
+]
+
+const userObj = usersArray[0]
+
+userObj.userName = "Wayne"
+
+console.log(usersArray)
+console.log(userObj)
+
+>>>
+
+[{userName: 'Wayne', password: '123456'}]
+{userName: 'Wayne', password: '123456'}
+```
+* In the filter example, remember to add `[0]` so it is an obejct instead of a new array. Only in this case, the original data will change!
+```js
+const orderedProduct = menuArray.filter(menu => menu.id === Number(e.target.dataset.id))[0]
+```
+
+
+
+
+
+
+
+
+
+
+
+## .find()
+It returns the `value` of the first element in the array that passes the predicate test. The method returns undefined when none of the elements in the array pass the predicate test.
+```js
+const numbers = [1, 3, 5, 7, 9];
+numbers.find((num) => num < 5);
+// => 1
+```
+
+## .findIndex()
+The findIndex(predicate) is the same as the find() method, but it returns the (first) `index` of the element that passes the predicate test instead of the value. The method returns -1 when none of the elements in the array pass the predicate test.
+```js
+const numbers = [1, 3, 5, 7, 9];
+numbers.findIndex((num) => num > 7);
+// => 4
+numbers.findIndex((num) => num > 9);
+// => -1
+```
+
+## .indexOf() - Get the first index of the value
+```js
+const numbers = [1, 'two', 3, 'four']
+numbers.indexOf(1)
+>>> 0
+```
+
+
 
 
 
@@ -572,26 +587,6 @@ numbers;
 ```
 
 
-
-### Rest operator
-When ... appears on the left-hand side of an assignment, those three dots are known as the rest operator. The three dots together with a variable name is called a `rest element`. It collects zero or more values, and stores them into a single array.  
-
-```js
-// ...everythingElse is called a rest element
-const [a, b, ...everythingElse] = [0, 1, 1, 2, 3, 5, 8];
-a;
-// => 0
-b;
-// => 1
-everythingElse;
-// => [1, 2, 3, 5, 8]
-```
-A rest element cannot have a trailing comma. It must be the last element in a destructuring assignment.
-```js
-const [...items, last] = [0, 1, 1, 2, 3, 5, 8];
-
->>> SyntaxError
-```
 -------------------------------------------
 ## Array.isArray()
 The Array class has a method called Array.isArray() that checks if its argument is an array.
