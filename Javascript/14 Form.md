@@ -207,6 +207,7 @@ checkboxGluten.addEventListener('change', function(){
 ```
 
 ## Radio buttons
+- Give the user a range of options to choose. 
 - Use `<fieldset>` and `<legend>` tags to group the set and provide the context for screen reader users
 - We must assign a `value` to the option of each radio, and that is the value that we are going to get from the formData. 
 - Giving the radios the same `name` can create a radio group in which only one choice can be selected. 
@@ -257,13 +258,15 @@ or we can use querySelector
 ```js
 document.querySelector('input[name="emotion"]:checked').value
 ```
+![](../Images/radio.png)
 
-## Dropdown button - select element
+## Dropdown form - select element
 - Give the `select` element a `name` and give each `option` a `value`.  
 - `defaultValue` property will show the given value as the default value.  
 - `size` represents how many items shown in the scroll bar without scroll.   
 - We can put a value of empty string and put some instruction texts as the 1st option, make it `disabled`, and make the **select** element `required`.
 - Group options together in the `optgroup` if needed.
+- The native HTML `select` element is  difficult to style because the expanded dropdown menu is rendered by the user's operating system, not the browser window itself. Because of this, browsers do not allow you to change the background of the entire expanded dropdown container using CSS alone.
 
 ```html
 <section class="container">
@@ -290,7 +293,7 @@ document.querySelector('input[name="emotion"]:checked').value
     </form>
 </section>
 ```
-<img src="../../Images/dropdown.png" width="400">
+<img src="../Images/dropdown.png" width="400">
 
 * We can get the `value` of the currently selected dropdown option because we only need to grab the select element. This is different from **radio buttons**, because each input element is seperate. 
 ```js

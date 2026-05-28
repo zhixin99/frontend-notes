@@ -1,7 +1,8 @@
 # Postion
 
 ## Position: relative and absolute
-the absolute element is `above` the other elements
+- the absolute element is `above` the other elements. It is the child element
+- Top: 0 -> Place the top edge of this element 0px away from the top edge of its positioned parent.
 ```css
 .map-container {
     /* without the relative parent element, the child element will position itself relative to the whole window */
