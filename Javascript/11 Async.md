@@ -23,7 +23,7 @@ We have used lots of callback functions already, including:
 
 ## Promise
 * A Promise is an `object` that take a bit of time to finish but will eventually finish running. It stands for a future result of an async operation.
-* The object that we return from the fetch is a promise
+* The `object` that we return from the `fetch` is a `promise`
 * Pending => Resolved or Rejected
 * We can't directly log out the promise
 ```js
@@ -34,45 +34,7 @@ console.log(data)
 ```
 * It has a method called `.then()`
 
-## Fulfilled => .then()
-* It lets the `other codes run first` before the response from the fetch request come back from the server
-* .then() is the part that will run if the promise is `fulfilled`
-```js
-console.log("The first console log")
-
-fetch("https://dog.ceo/api/breeds/image/random")
-    .then(response => response.json())
-    .then(data => console.log(data))
-
-console.log("The second console log")
-
->>> 
-The first console log
-The second console log
-{message: 'https://images.dog.ceo/breeds/affenpinscher/n02110627_12003.jpg', status: 'success'}
-```
-
-## Rejected => .catch()
-* It runs only if the Promise is rejected
-* It receives an `error` as the parameter
-```js
-fetch("/data").catch(error => {console.log("something wenr wrong!")});
-```
-
-If there's an error and the .catch() is not set up, js will give us a warning like this
-```js
-unhandledrejection PromiseRejectionEvent
-```
-
-We can directly console log the `error itself`
-```js
-fetch("/data")
-  .then(res => res.json())
-  .then(data => console.log(data))
-  .catch(err => console.error(err))
-```
-
-## promise chaining
+### promise chaining
 * .then() works on a promise and it also returns a promise
 * promise is passed as a `parameter` (res) to the `callback function` of the .then()
 
@@ -106,10 +68,48 @@ fetch("https://apis.scrimba.com/bored/api/activity")
 >>> "World"
 ```
 
+### Fulfilled => .then()
+* It lets the `other codes run first` before the response from the fetch request come back from the server
+* .then() is the part that will run if the promise is `fulfilled`
+```js
+console.log("The first console log")
+
+fetch("https://dog.ceo/api/breeds/image/random")
+    .then(response => response.json())
+    .then(data => console.log(data))
+
+console.log("The second console log")
+
+>>> 
+The first console log
+The second console log
+{message: 'https://images.dog.ceo/breeds/affenpinscher/n02110627_12003.jpg', status: 'success'}
+```
+
+### Rejected => .catch()
+* It runs only if the Promise is rejected
+* It receives an error as the **parameter**, it can be `error` or `err` or whatever we want to call it. 
+```js
+fetch("/data").catch(error => {console.log("something wenr wrong!")});
+```
+
+If there's an error and the .catch() is not set up, js will give us a warning like this
+```js
+unhandledrejection PromiseRejectionEvent
+```
+
+We can directly console log the `error itself`
+```js
+fetch("/data")
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => console.error(err))
+```
+
 ## `async` & `await`  
 * await does not change how Promises work — it only makes the code look synchronous.  
-* async goes before the function
-* await goes before a method / a function that returns a promise
+* `async` goes before the function
+* `await` goes before a method / a function that `returns a promise`
 ```js
 async function getWeather() {
 	const res = await fetech("")

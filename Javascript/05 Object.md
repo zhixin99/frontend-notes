@@ -124,7 +124,8 @@ const sun = weather.sun
 const cloud = weather.cloud
 const thunder = weather.cloud_with_lightning
 ```
-### Rest operator
+
+## Rest operator
 rest operator can be used to collect more than one properties and store them in a single `object`.
 ```js
 const { street, ...address } = {
@@ -140,22 +141,6 @@ console.log(address)
 >>> {postalCode: '11011', city: 'Berlin'}
 ```
 
-## Objects with Method and this
-* `this` in an object method represent the `object` itself
-* **Avoid using arrow function** in object method.
-```js
-const gamer = {
-    name: 'Dave',
-    score: 0,
-    incrementScore: function(){
-		// "this" is same as "gamer"
-        this.score++   
-    }
-}
-```
-
-
-
 ## .hasOwnProperty() - Checking Whether a Key Exists
 You can check whether a certain key exists in an object with the hasOwnProperty method.
 ```js
@@ -169,8 +154,8 @@ obj.hasOwnProperty('age');
 ```
 
 ## Looping Through an Object
-* Objects are `not` designed to be ordered collections. 
-* To avoid subtle errors, you should always assume the for...in loop visits the keys in an `arbitrary` order. 
+* Objects are `not` iterable, and not ordered collections. We can only iterate the key. 
+* You should always use the `for...in` not `for ... of` loop. It visits the keys in an `arbitrary` order. 
 * When iterating over a plain object, JavaScript follows this order:
 - Integer keys: Iterated in `ascending` numeric order
 - String keys: Iterated in the order they were inserted
@@ -192,5 +177,30 @@ for (let key in obj) {
 // b
 // a
 ```
+
+
+
+
+
+
+
+
+
+
+
+## Objects with Method and this
+* `this` in an object method represent the `object` itself
+* **Avoid using arrow function** in object method.
+```js
+const gamer = {
+    name: 'Dave',
+    score: 0,
+    incrementScore: function(){
+		// "this" is same as "gamer"
+        this.score++   
+    }
+}
+```
+
 
 
