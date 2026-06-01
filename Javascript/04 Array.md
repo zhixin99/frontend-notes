@@ -353,29 +353,25 @@ arr.reverse();
 ```
 
 ## .sort()
-sorts the elements of an array by first converting them to `strings` and then applying string comparison   
-sort also `returns that modified array` which is convenient if you want to chain other methods to it.   
-
+- sorts the elements of an array by first converting them to `strings` and then applying string comparison   
+- sort both `modify the orginal array` and `return` a new  array
+- It sorts `uppercase` before lowercase.
 ```
 ```js
-const arr = ['c', 'a', 'z', 'b'];
+const arr = ['C', 'a', 'z', 'b'];
 const result = arr.sort();
 
 console.log(result);
-// => ['a', 'b', 'c', 'z']
+// => ['C', 'a', 'b', 'z']
 
 console.log(arr);
-// => ['a', 'b', 'c', 'z']
+// => ['C', 'a', 'b', 'z']
 ```
-To customize the sorting behavior, you can pass a comparison function as an argument.   
-The comparison function itself is called with two arguments which are two elements of the array.   
-It then needs to return the following:
-- a negative number if the first argument should be sorted before the second
-- a positive number if the first argument should be sorted after the second
-- 0 if the order of the elements should stay the same
-
-
-Sort the number. 
+- To customize the sorting behavior, you can `pass a comparison function` as an argument. The comparison function itself is called with `two arguments` which are two elements of the array.   
+- It then needs to return the following:
+    - a negative number: Sort a before b.
+    - a positive number: Sort b before a. 
+    - 0 if the order of the elements should stay the same
 ```js
 // without the customized sorting: it is sorting the string, not the number value!
 const arr = [10, 2, 30];
@@ -386,8 +382,8 @@ arr;
 >>> [10, 2, 30]
 
 // the correct way
-arr.sort((a, b) => a - b) // sort from small to big
-arr.sort((a, b) => b - a) // sort from big to small
+arr.sort((a, b) => a - b) // a排在b前面的时候，a<b，所有是从小到大排
+arr.sort((a, b) => b - a) // sort a before b if b < a. So it is sort from big to small
 ```
 
 ```js

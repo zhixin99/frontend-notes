@@ -97,12 +97,6 @@ function flatten(arr){
 }
 
 function flatten(arr){
-    // initialize a new, empty array
-    // loop through the passed in array and check - string or array? 
-        // if the item is string, push into the new array
-        // if the item is an array, loop through it, pushing each item into the array
-    // return new array
-    
     const newArr = [];
     
     arr.forEach(element => {
@@ -156,3 +150,115 @@ function findTheWinner(obj){
 console.log(findTheWinner(gameNightFood));
 ```
 
+## reduce
+```js
+/*
+Use reduce() and only reduce() to calculate and return 
+the total cost of only the savory
+items in the shopping cart.
+
+Expected output: 9.97  
+*/
+
+function totalSavory(arr){
+    return arr.reduce((acc, curr) => {
+        if (curr.type === "savory") {
+            return acc + curr.price
+        } else {
+            return acc
+        }
+    }, 0);
+}
+```
+
+```js
+import podcasts from "./data.js";
+
+/* 
+Write a function that takes in the podcast data and
+returns a flat array of podcast hosts. There are quite a few ways to approach
+this, but try solving the problem using reduce(). 
+
+Once you have a flat array of hosts, write a second function to randomly assign each host a prize
+from the awards array. 
+
+Example output: ["🏆 Alex Booker", "⭐ Bob Smith", "💎 Camilla Lambert" ...] 
+
+*/ 
+const awards = ["🏆", "⭐", "💎", "🥇", "👑"];
+
+function getHosts(data){
+   return data.reduce((total, currentValue) => {
+        total.push(currentValue.hosts)
+        return total.flat()
+        }, [])
+}
+
+function assignAwards(data){
+    
+    return data.map(host => {
+        const randomAward = awards[Math.floor(Math.random() * awards.length)]
+        return randomAward + " " + host
+        })
+}
+
+
+console.log(getHosts(podcasts));
+console.log(assignAwards(getHosts(podcasts)));
+```
+
+## sort and console.log
+    You're online shopping for holiday gifts, but money is tight
+    so we need to look at the cheapest items first. 
+    Use the built in sort() method to write a function that returns a new array of
+    products sorted by price, cheapest to most expensive. 
+    
+    Then log the item and the price to the console: 
+    
+    💕,0
+    🍬,0.89
+    🍫,0.99
+    🧁,0.99
+    📚,0.99
+    ... continued
+```js
+function sortProducts(data){
+    return data.sort((a,b) => {
+        return a.price - b.price
+    });
+}
+
+const listByCheapest = sortProducts(products);
+console.log(listByCheapest);
+
+listByCheapest.forEach(item => console.log(item.produce, item.price));
+```
+
+## Remove duplicates in an array
+```js
+function getUnique(data) {
+
+    const uniqueArr = []
+
+    data.forEach(item => {
+        if (!uniqueArr.includes(item)) {
+            uniqueArr.push(item)
+        }
+    })
+
+    return uniqueArr
+}
+
+// a faster way
+function getUnique(data) {
+
+    const uniqueObj = {}
+
+    return data.filter(item => {
+        if (!uniqueObj[item]) {
+            uniqueObj[item] = true
+            return true
+        }
+    })
+}
+```

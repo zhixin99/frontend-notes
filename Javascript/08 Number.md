@@ -60,6 +60,12 @@ x = Math.PI;
 4 % 3; // => 1
 ```
 
+## .toFixed()
+round the number to xxx  decimal places
+```js
+total.toFixed(2)
+```
+
 ## Number.isNaN()
 
 ```JS
