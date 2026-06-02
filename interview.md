@@ -262,3 +262,14 @@ function getUnique(data) {
     })
 }
 ```
+
+## Conditionally filter
+if query.country, then filter; if query.continent, then filter
+```js
+export const getDataByQueryParams = (data, query) => {
+    return data.filter(dest => 
+        (!query.country || dest.country === query.country) &&
+        (!query.continent || dest.continent === query.continent) &&
+    );
+};
+```

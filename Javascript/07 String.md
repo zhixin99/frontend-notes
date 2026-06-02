@@ -128,6 +128,14 @@ let userName = "   Jean   ";
 console.log(userName.toUpperCase());
 ```
 
+## .startsWith() & .endsWith()
+```js
+const str = "Saturday night plans";
+
+console.log(str.startsWith("Sat"));
+// Expected output: true
+```
+
 ## .replaceAll()
 ```js
 let userName = "Jean";

@@ -52,8 +52,6 @@ Method tells the server what is your intention with the request / what kind of r
 * **Body**: The data we want to send back to server. Only for POST and PUT. 
 
 
-
-
 ## API coding
 ### GET
 ```js
@@ -157,4 +155,38 @@ fetch("https://api.coingecko.com/api/v3/coins/dogecoins32423")
 * Most browsers and servers have a limit on how long a URL can be (usually around 2,000 characters). A complex query with nested products, prices, images, and brand details can easily exceed that limit. If they used GET, the URL would "break" or get cut off. 
 * In GraphQL, this logic is a structured `JSON object`. It’s much "cleaner" to send that structure in a `POST body` than to try and cram it into a URL string.
 * I am POSTing a question to the server, and the server is giving me the answer.
+
+
+
+
+
+- Last time, we can only run our code by which is not idea because other people shouldn't need to search for the entry point to our app. 
+```
+node server.js
+```
+- Since now we have the start scripts, we can run the server.js in the terminal by
+```
+npm start
+```
+
+## REPL
+- `REPL` stands for Read-Eval-Print Loop. It is a quick, interactive `environment` built right into Node.js that lets you experiment with JavaScript code on the fly without having to create a file, save it, and run it.
+- If you have Node.js installed, you can try this yourself:
+    - Open your computer's terminal (Command Prompt, PowerShell, or Terminal on Mac).
+    - Type node and hit Enter.
+    - Your prompt will change (usually to a >), meaning you are now inside the REPL.
+    - Now you can type JavaScript directly into your terminal
+
+
+
+
+
+
+### network client 
+- It is an API `testing tool`, similar to Thunder Client or Postman inside VS Code.
+- It can make a request to your Node.js server.
+
+
+
+
 

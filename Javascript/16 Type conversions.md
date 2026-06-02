@@ -3,6 +3,7 @@
 ## Convert between string and array
 ```JS
 let myLeads = `["www.awesomelead.com"]`
+
 // Turn the myLeads string into an array
 myLeads = JSON.parse(myLeads)
 

@@ -1,36 +1,35 @@
 # Basic
-JSX = JavaScript XML
+## React
+- React is a `library`. It allow us to create easily reusable and interchangeable piece of the web and have various ways of combine together.
+- React creates a `virtual DOM` instead of the real DOM. Every time your components render, React updates this lightweight JavaScript copy first, runs its diffing algorithm to see exactly what changed, and then updates the Real DOM (reactDOM) in the browser as efficiently as possible. 
 
-React invented it as a syntax that lets you write UI structure (HTML-like) inside JavaScript.  
-
-In a React component file, there are two different zones:
-
-* Normal JavaScript zone
+## JSX
+- JSX = JavaScript XML
+- It is a syntax created by React. It that lets you write HTML-like syntax (not HTML, not s string) inside JavaScript.  
+- Before JSX, we need to write React.createElement to create element.  
+```js
+React.createElement("div", null, "Hello")
+```
+- In a React component file, there are two different zones:
+    - Normal JavaScript zone
+    - JSX zone: It's anywhere you write `HTML-like syntax`.
 ```jsx
 const [dices, setDics] = React.useState(generateAllNewDice())
 ```
-* JSX zone: It's anywhere you write HTML-like syntax.
 ```jsx
 <Die value={dice}/>
 ```
 
-## HTML
-```html
-	<body>
-		<div id="root"></div>
-		<script type="module" src="/src/index.jsx"></script>
-  	</body>
-```
-## The process of parsing JSX
+## The process of parsing JSX / virtual DOM
 1. We write JSX syntax.
 ```jsx
 <div>Hello</div>
 ```
-2. Vite(build tool) turns the JSX syntax(JSX elements) into calls to react.createElement
+2. `Vite`(build tool) turns the JSX syntax(JSX elements) into calls to `react.createElement`. 
 ```js
 React.createElement("div", null, "Hello")
 ```
-3. The browser javascript engine run the react.createElement, and react(createElement function) returns **javascript object** as Virtual DOM.
+3. The browser javascript engine run the react.createElement, and `react createElement function` returns **javascript object** as `Virtual DOM.` This simple object is a single Virtual DOM node (often called a React Element). When hundreds or thousands of these objects are nested together in an object tree, that tree is the Virtual DOM.
 ```js
 {
   type: "div",
@@ -38,35 +37,30 @@ React.createElement("div", null, "Hello")
   children: "Hello"
 } 
 ```
-4. ReactDOM(library) reads that object and creates real DOM nodes.
+4. `ReactDOM`(library) reads that object and `creates real DOM nodes`.
 
 5. The browser renders the real DOM.
 
-## react-dom
+## Create a React file
+1. In html file, create a section for the jsx, give it an id of root
+```html
+<body>
+    <div id="root"></div>
+    <script type="module" src="/src/index.jsx"></script>
+</body>
+```
+2. Use `react-dom` to transfer the jsx object into real dom and put things into browser.  
+
 ```jsx
 import ReactDOM from "react-dom/client"
-import App from "./App"
-
-ReactDOM
-    .createRoot(document.getElementById("root"))
-    .render(<App />)
-```
-or another way
-```jsx
-import { createRoot } from "react-dom/client"
-
-const root = createRoot(document.getElementById("root"))
 
 const reactElement = <h1>Hello from JSX!</h1>
 
-// Vite change jsx syntax into the createElement syntax which creates a js object under the line. 
+// first, it turns your div into a highly optimized React Root Container (createRoot)
+const root = ReactDOM.createRoot(document.getElementById("root"))
 
-console.log(reactElement)
->>> {type: 'h1', key: null, props: {children: 'Hello from JSX!'}, _owner: null, _store: {}}
-
-root.render(
-    reactElement
-)
+// then, it hands your app over to that container to manage dynamically (.render
+root.render(reactElement)
 ```
 
 ## react
