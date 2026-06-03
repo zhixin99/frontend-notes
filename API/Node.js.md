@@ -1,7 +1,7 @@
 ## Node.js
 - Before Node.js came along in 2009, JavaScript was basically trapped inside the web browser (like Chrome, Safari, or Firefox), acting as the engine that made websites interactive.
 - Node.js took that same JavaScript engine (specifically Google Chrome's V8 engine) and packed it into a standalone program.
-- Node.js is an environment that allows us to write javascript in other places besides the browser. Because of Node.js, you can write JavaScript to run directly on your computer's operating system.
+- Node.js is an `environment` that allows us to write javascript in other places besides the browser. Because of Node.js, you can write JavaScript to run directly on your computer's operating system.
 
 ### Scenario A: Pure Frontend (No Node.js involved)
 If your index.js file is hooked up to an index.html file like this:
@@ -57,6 +57,7 @@ While you are developing your **React app**, Node and Vite work together in the 
     - By default, Node.js expects the older CommonJS (require) syntax. To tell Node that you want to use modern import/export statements, you can open the package.json file in VS Code and add `"type": "module"` right under the "main" property.
     - The **ES Module approach** is the official, standardized way to split your JavaScript code into separate, reusable files and share code between them using the import and export keywords.
     - HTTP module allows data to be transferred over the HTTP protocol, so we can create servers, handle requests from clients, and provide responses to those requests. 
+    - Don't forget to delete the default "test": "echo \"Error: no test specified\" && exit 1" under the scripts because we will not use it. 
 ```json
 {
   "name": "web-mini-projects",
@@ -64,7 +65,7 @@ While you are developing your **React app**, Node and Vite work together in the 
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   }
 }
 ```
@@ -122,13 +123,23 @@ node server.js
 - port 8000 is one of the most popular "alternative" ports used by developers to `run and test web` applications locally on their computers. Just like ports 3000 or 5173, port 8000 is a safe, `unassigned` virtual doorway that developers use so they don't interfere with standard internet traffic (like your normal web browsing, which uses ports 80 and 443).
 
 ## response object method & property
-- res.write(): it allows us to send something to the client
-- res.end(): always end the stream with res.end. 
+- **res.write()**: it allows us to send something to the client
+- **res.end()**: always end the stream with res.end. 
     - We can ignore the utf8 because it is the default format of data.
     - We can also put a call back function inside.
     - We can also just `leave it empty`, make it simply the end of the stream. 
-- res.setHeader(): pass in two strings to set the Content-Type. When you call res.setHeader('Content-Type', 'application/json'), you are telling the recipient's browser or API client exactly **what kind of file** you are sending back before you actually deliver the data.
-- res.statusCode: this is a `property` not method!
+- **res.setHeader()**: pass in two strings to set the Content-Type. When you call res.setHeader('Content-Type', 'application/json'), you are telling the recipient's browser or API client exactly **what kind of file** you are sending back before you actually deliver the data.
+- **res.statusCode**: this is a `property` not method!
+- **res.writeHead()**: It combines the setHeader and statuscode. It has some issues: 
+    - It will be sent out immediately, so you can't change them or add new ones. 
+    - It will ignore all other header settings after it. In the example, the CORS is ignored. 
+```js
+const server = http.createServer((req, res) => {
+    res.writeHead(200, {"Content-Type": "text/html"})
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Methods', 'GET')
+})
+```
 
 ## request object method 
 - req.url: it gives us the endpoints and query string, excluding the basic URL. 
@@ -188,6 +199,42 @@ server.listen(8000, () => console.log('Server listening on port 8000'))
 
 >>> { name: 'marcel', country: 'fr', is_open_to_public: 'true' }
 ```
+
+## CWD
+The Current Working Directory is the folder you are in when you run your Node.js app, typically with a commond like node server.js
+
+## import.meta
+- It is an object specific to the modular JS environment, which provides metadata about the current module
+```js
+// server.js
+console.log(import.meta)
+
+>>> [Object: null prototype] {
+  dirname: '/home/projects/s0fcj7p84c',
+  filename: '/home/projects/s0fcj7p84c/server.js',
+  resolve: [Function: resolve],
+  url: 'file:///home/projects/s0fcj7p84c/server.js'
+}
+```
+- To get the directory path, we can call the dirname property
+- In old school node, `__dirname` is a **global variable** that you can directly get. 
+- To mimic that variable, we can store the result in the __dirname variable. 
+```js
+// server.js
+
+const __dirname = import.meta.dirname
+```
+
+
+
+
+
+
+
+
+
+
+
 
 
 ```js
